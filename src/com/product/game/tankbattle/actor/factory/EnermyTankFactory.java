@@ -9,5 +9,6 @@ public class EnermyTankFactory extends TankFactory{
 	protected TankActor makePlainTank() {
 		return new EnermyTank();
 	}
+	
 
 }

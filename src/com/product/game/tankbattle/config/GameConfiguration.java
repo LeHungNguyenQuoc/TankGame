@@ -23,9 +23,6 @@ public class GameConfiguration {
 	public ScreenOrientation screenOrientation;
 	public RatioResolutionPolicy screenRatio;
 	
-	public Font fontBig;
-	public Font fontSmall;
-	
 	
 	public GameConfiguration() {
 		this.configCamera();
@@ -36,24 +33,6 @@ public class GameConfiguration {
 		CAMERA_HEIGHT = 480f;
 		screenOrientation = ScreenOrientation.LANDSCAPE_FIXED;
 		screenRatio = new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT);
-	}
-	
-	
-	private void configFontGame(BaseGameActivity activity) {
-		fontBig =  FontFactory.create(activity.getFontManager(),
-				activity.getTextureManager(), 256, 256,
-				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32);
-		
-		fontSmall =  FontFactory.create(activity.getFontManager(),
-				activity.getTextureManager(), 256, 256,
-				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 20);
-		
-		fontSmall.load();
-		fontBig.load();
-	}
-	
-	public void loadGameResource(BaseGameActivity activity) {
-		this.configFontGame(activity);
 	}
 	
 }
