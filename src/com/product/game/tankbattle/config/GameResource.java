@@ -7,13 +7,15 @@ import org.andengine.ui.activity.BaseGameActivity;
 
 import android.graphics.Typeface;
 
-import com.product.game.tankbattle.actor.entity.tank.TankResourcesInfo;
+import com.product.game.tankbattle.actor.sprite.ControllerResourceInfo;
+import com.product.game.tankbattle.actor.sprite.TankResourcesInfo;
 
 public class GameResource {
 	
 	private static GameResource instance;
 	public Font fontBig;
 	public Font fontSmall;
+	public ControllerResourceInfo controller;
 	public BaseGameActivity activity;
 	public VertexBufferObjectManager vertexBufferObjectManager;
 	
@@ -45,7 +47,11 @@ public class GameResource {
 	private void configBitmapAlias(BaseGameActivity activity) {
 		tankResources = new TankResourcesInfo();
 		tankResources.loadBitmapTextureAtlas(activity);
+		
+		controller = new ControllerResourceInfo();
+		controller.dPad.loadBitmapTextureAtlas(activity);
 	}
+	
 	
 	public void loadGameResource(BaseGameActivity activity) {
 		this.activity = activity;

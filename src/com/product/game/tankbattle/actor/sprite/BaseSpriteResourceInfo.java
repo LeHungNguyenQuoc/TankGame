@@ -1,5 +1,6 @@
-package com.product.game.tankbattle.actor.entity.tank;
+package com.product.game.tankbattle.actor.sprite;
 
+import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -9,22 +10,23 @@ import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtla
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 
+import com.product.game.tankbattle.config.GameResource;
 
-public class TankResourcesInfo {
+public abstract class BaseSpriteResourceInfo {
+	protected BuildableBitmapTextureAtlas mBitmapTextureAtlas;
+	protected TiledTextureRegion mTiledTextureRegion;
 	
-	final static int TANK_FRAME_PX_WIDTH = 60;
-	final static int TANK_FRAME_PX_HEIGHT = 60;
-	final static int MAX_SPRITE_ID = 6;
-	final static String GFX_PATH_STRING  = "gfx/tank_sprite.png";
 	
-	private BuildableBitmapTextureAtlas mBitmapTextureAtlas;
-	public TiledTextureRegion mTiledTextureRegion;
+	public abstract int getFrameNumbers();
+	public abstract String getGFXResourcePath();
+	public abstract int getFrameWidth();
+	public abstract int getFrameHeight();
 	
 	public void loadBitmapTextureAtlas(BaseGameActivity activity) {
 		mBitmapTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 
-				TANK_FRAME_PX_WIDTH + 10, TANK_FRAME_PX_HEIGHT* MAX_SPRITE_ID + 10 , TextureOptions.NEAREST);
+				getFrameWidth() + 10, getFrameHeight()* getFrameNumbers() + 10 , TextureOptions.NEAREST);
 		mTiledTextureRegion = BitmapTextureAtlasTextureRegionFactory
-				.createTiledFromAsset(mBitmapTextureAtlas, activity, GFX_PATH_STRING, 1 , MAX_SPRITE_ID);
+				.createTiledFromAsset(mBitmapTextureAtlas, activity, getGFXResourcePath(), 1 , getFrameNumbers());
 		try {
 			mBitmapTextureAtlas
 			.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(
@@ -32,7 +34,12 @@ public class TankResourcesInfo {
 			mBitmapTextureAtlas.load();
 		} catch (Exception e) {
 		}
-		
 	}
 	
+	public AnimatedSprite makeAnimateSprite() {
+		if (mTiledTextureRegion == null) {
+			this.loadBitmapTextureAtlas(GameResource.getInstance().activity);
+		}
+		return new AnimatedSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
+	}
 }

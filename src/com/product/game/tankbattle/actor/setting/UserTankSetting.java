@@ -12,6 +12,7 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 
 import com.product.game.tankbattle.actor.base.TBActor.ACTOR_TEAM;
+import com.product.game.tankbattle.actor.sprite.TankResourcesInfo;
 import com.product.game.tankbattle.config.GameResource;
 
 public class UserTankSetting implements TankSetting {
@@ -37,9 +38,7 @@ public class UserTankSetting implements TankSetting {
 
 	@Override
 	public IEntity getEngineEntity() {
-		return new AnimatedSprite(0, 0, 
-				GameResource.getInstance().tankResources.mTiledTextureRegion, 
-				GameResource.getInstance().vertexBufferObjectManager);
+		return GameResource.getInstance().tankResources.makeAnimateSprite();
 	}
 
 	@Override
