@@ -4,7 +4,10 @@ import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.andengine.entity.modifier.MoveXModifier;
 import org.andengine.entity.modifier.MoveYModifier;
+import org.andengine.entity.scene.Scene;
 import org.andengine.util.modifier.IModifier;
+
+import android.content.Entity;
 
 import com.product.game.tankbattle.actor.TBActorHelper;
 public abstract class TBActor {
@@ -27,11 +30,12 @@ public abstract class TBActor {
 	public int actorID;	
 	public ACTOR_TYPE actorType;
 	public ACTOR_TEAM actorTeam;
-	public IEntity actorEntity;
+	protected IEntity actorEntity;
 	
 	public int hitPoint;
 	public float speed;
 	public int level;
+
 	
 	public boolean canAttack;
 
@@ -56,6 +60,18 @@ public abstract class TBActor {
 	}
 	
 	
+	public void setEngineEntity(IEntity entity) {
+		actorEntity = entity;
+	}
+	
+	public IEntity getEngineEntity() {
+		return actorEntity;
+	}
+	
+	public void addToScene(Scene scene) {
+		scene.attachChild(actorEntity);
+	}
+		
 	/**
 	 * move object by X coordinate
 	 * @param fromX

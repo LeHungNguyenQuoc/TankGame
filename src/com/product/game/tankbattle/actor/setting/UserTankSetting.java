@@ -1,29 +1,45 @@
 package com.product.game.tankbattle.actor.setting;
 
 import org.andengine.entity.IEntity;
+import org.andengine.entity.sprite.AnimatedSprite;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSource;
+import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
+import org.andengine.ui.activity.BaseGameActivity;
 
 import com.product.game.tankbattle.actor.base.TBActor.ACTOR_TEAM;
+import com.product.game.tankbattle.config.GameResource;
 
 public class UserTankSetting implements TankSetting {
-
+	
+	final static int HIT_POINT = 1;
+	final static float SPEED = 1;
+	final static int TANK_LEVEL = 1;
+	
 	@Override
 	public int getHitPoint() {
-		return 50;
+		return HIT_POINT;
 	}
 
 	@Override
 	public float getSpeed() {
-		return 100;
+		return SPEED;
 	}
 
 	@Override
 	public int getLevel() {
-		return 1;
+		return TANK_LEVEL;
 	}
 
 	@Override
 	public IEntity getEngineEntity() {
-		return null;
+		return new AnimatedSprite(0, 0, 
+				GameResource.getInstance().tankResources.mTiledTextureRegion, 
+				GameResource.getInstance().vertexBufferObjectManager);
 	}
 
 	@Override

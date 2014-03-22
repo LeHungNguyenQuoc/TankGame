@@ -36,7 +36,7 @@ public class BaseActivity  extends SimpleBaseGameActivity{
 
 	@Override
 	protected Scene onCreateScene() {
-		return new ActionScreen(this);
+		return new ActionScreen();
 	}
 
 }

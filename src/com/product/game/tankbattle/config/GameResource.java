@@ -2,15 +2,22 @@ package com.product.game.tankbattle.config;
 
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.activity.BaseGameActivity;
 
 import android.graphics.Typeface;
+
+import com.product.game.tankbattle.actor.entity.tank.TankResourcesInfo;
 
 public class GameResource {
 	
 	private static GameResource instance;
 	public Font fontBig;
 	public Font fontSmall;
+	public BaseGameActivity activity;
+	public VertexBufferObjectManager vertexBufferObjectManager;
+	
+	public TankResourcesInfo tankResources;
 	
 	
 	public static GameResource getInstance() {
@@ -36,10 +43,13 @@ public class GameResource {
 	
 	
 	private void configBitmapAlias(BaseGameActivity activity) {
-		
+		tankResources = new TankResourcesInfo();
+		tankResources.loadBitmapTextureAtlas(activity);
 	}
 	
 	public void loadGameResource(BaseGameActivity activity) {
+		this.activity = activity;
+		this.vertexBufferObjectManager = activity.getVertexBufferObjectManager();
 		this.configFontGame(activity);
 		this.configBitmapAlias(activity);
 	}

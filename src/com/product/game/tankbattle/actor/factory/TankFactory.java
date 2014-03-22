@@ -16,11 +16,11 @@ public abstract class TankFactory {
 		tankActor.actorType = ACTOR_TYPE.Tank;
 		
 		// tank attribute
-		tankActor.actorEntity = setting.getEngineEntity();
 		tankActor.hitPoint = setting.getHitPoint();
 		tankActor.level = setting.getLevel();
 		tankActor.speed = setting.getSpeed();
 		tankActor.actorTeam = setting.getTeam();
+		tankActor.setEngineEntity(setting.getEngineEntity());
 		
 		return tankActor;
 	}

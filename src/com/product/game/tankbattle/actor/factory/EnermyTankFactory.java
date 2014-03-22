@@ -10,5 +10,4 @@ public class EnermyTankFactory extends TankFactory{
 		return new EnermyTank();
 	}
 	
-
 }
