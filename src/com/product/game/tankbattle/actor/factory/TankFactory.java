@@ -21,6 +21,7 @@ public abstract class TankFactory {
 		tankActor.speed = setting.getSpeed();
 		tankActor.actorTeam = setting.getTeam();
 		tankActor.setEngineEntity(setting.getEngineEntity());
+		tankActor.stepDistance = setting.getStepDistance();
 		
 		return tankActor;
 	}

@@ -18,7 +18,8 @@ import com.product.game.tankbattle.config.GameResource;
 public class UserTankSetting implements TankSetting {
 	
 	final static int HIT_POINT = 1;
-	final static float SPEED = 1;
+	final static float SPEED = 500;
+	final static int STEP_DISTANCE = 5;
 	final static int TANK_LEVEL = 1;
 	
 	@Override
@@ -44,6 +45,11 @@ public class UserTankSetting implements TankSetting {
 	@Override
 	public ACTOR_TEAM getTeam() {
 		return ACTOR_TEAM.User;
+	}
+
+	@Override
+	public int getStepDistance() {
+		return STEP_DISTANCE;
 	}
 
 }

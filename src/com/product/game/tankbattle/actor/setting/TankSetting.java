@@ -11,4 +11,5 @@ public interface TankSetting {
 	public int getLevel();
 	public IEntity getEngineEntity();
 	public ACTOR_TEAM getTeam();
+	public int getStepDistance();
 }

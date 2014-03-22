@@ -1,5 +1,8 @@
 package com.product.game.tankbattle.actor.sprite;
 
+import com.product.game.tankbattle.config.GameResource;
+import com.product.game.tankbattle.controller.DPadSprite;
+
 public class DPADResourceInfo extends BaseSpriteResourceInfo{
 
 	@Override
@@ -22,4 +25,9 @@ public class DPADResourceInfo extends BaseSpriteResourceInfo{
 		return 150;
 	}
 
+	
+	@Override
+	public DPadSprite makeAnimateSprite() {
+		return new DPadSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
+	}
 }
