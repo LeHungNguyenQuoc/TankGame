@@ -1,6 +1,9 @@
-package com.product.game.tankbattle.actor.sprite;
+package com.product.game.tankbattle.resource.sprite;
 
-public class FireButtonResoureInfo extends BaseSpriteResourceInfo{
+import com.product.game.tankbattle.controller.DPadSprite;
+import com.product.game.tankbattle.resource.GameResource;
+
+public class DpadSpriteManager extends BaseSpriteManager{
 
 	@Override
 	public int getFrameNumbers() {
@@ -9,17 +12,23 @@ public class FireButtonResoureInfo extends BaseSpriteResourceInfo{
 
 	@Override
 	public String getGFXResourcePath() {
-		return "gfx/fire_sprite.png";
+		return "gfx/dpad_test.png";
 	}
 
 	@Override
 	public int getFrameWidth() {
-		return 100;
+		return 150;
 	}
 
 	@Override
 	public int getFrameHeight() {
-		return 100;
+		return 150;
+	}
+
+	
+	@Override
+	public DPadSprite makeAnimateSprite() {
+		return new DPadSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
 	}
 
 	@Override
@@ -41,5 +50,4 @@ public class FireButtonResoureInfo extends BaseSpriteResourceInfo{
 	public float getRotateDownAngle() {
 		return 0;
 	}
-
 }

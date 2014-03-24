@@ -6,7 +6,7 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 import com.product.game.tankbattle.config.GameConfiguration;
-import com.product.game.tankbattle.config.GameResource;
+import com.product.game.tankbattle.resource.GameResource;
 import com.product.game.tankbattle.scene.ActionScreen;
 
 public class BaseActivity  extends SimpleBaseGameActivity{

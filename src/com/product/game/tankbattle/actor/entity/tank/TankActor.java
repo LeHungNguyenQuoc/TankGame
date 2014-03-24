@@ -3,7 +3,7 @@ package com.product.game.tankbattle.actor.entity.tank;
 import org.andengine.entity.sprite.AnimatedSprite;
 
 import com.product.game.tankbattle.actor.base.TBActor;
-import com.product.game.tankbattle.config.GameResource;
+import com.product.game.tankbattle.resource.GameResource;
 
 public class TankActor extends TBActor{
 	public int stepDistance;

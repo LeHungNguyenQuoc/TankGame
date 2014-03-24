@@ -1,7 +1,7 @@
-package com.product.game.tankbattle.actor.sprite;
+package com.product.game.tankbattle.resource.sprite;
 
 
-public class TankResourcesInfo extends BaseSpriteResourceInfo{
+public class TankSpriteManager extends BaseSpriteManager{
 	
 	final static int TANK_FRAME_PX_WIDTH = 60;
 	final static int TANK_FRAME_PX_HEIGHT = 60;

@@ -12,9 +12,9 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 
 import com.product.game.tankbattle.actor.base.TBActor.ACTOR_TEAM;
-import com.product.game.tankbattle.actor.sprite.BaseSpriteResourceInfo;
-import com.product.game.tankbattle.actor.sprite.TankResourcesInfo;
-import com.product.game.tankbattle.config.GameResource;
+import com.product.game.tankbattle.resource.GameResource;
+import com.product.game.tankbattle.resource.sprite.BaseSpriteManager;
+import com.product.game.tankbattle.resource.sprite.TankSpriteManager;
 
 public class UserTankSetting implements TankSetting {
 	
@@ -54,7 +54,7 @@ public class UserTankSetting implements TankSetting {
 	}
 
 	@Override
-	public BaseSpriteResourceInfo getSpriteResourceInfo() {
+	public BaseSpriteManager getSpriteResourceInfo() {
 		return GameResource.getInstance().tankResources;
 	}
 

@@ -4,10 +4,10 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.input.touch.TouchEvent;
 
-import com.product.game.tankbattle.actor.sprite.BaseSpriteResourceInfo.ITouchOnSprite;
 import com.product.game.tankbattle.config.GameConfiguration;
-import com.product.game.tankbattle.config.GameResource;
 import com.product.game.tankbattle.controller.DPadSprite.IDPadSpriteListener;
+import com.product.game.tankbattle.resource.GameResource;
+import com.product.game.tankbattle.resource.sprite.BaseSpriteManager.ITouchOnSprite;
 
 public class GameController implements IDPadSpriteListener{
 

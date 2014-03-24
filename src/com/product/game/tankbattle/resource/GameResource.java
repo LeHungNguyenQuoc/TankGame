@@ -1,4 +1,4 @@
-package com.product.game.tankbattle.config;
+package com.product.game.tankbattle.resource;
 
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
@@ -8,19 +8,19 @@ import org.andengine.ui.activity.BaseGameActivity;
 import android.graphics.Color;
 import android.graphics.Typeface;
 
-import com.product.game.tankbattle.actor.sprite.ControllerResourceInfo;
-import com.product.game.tankbattle.actor.sprite.TankResourcesInfo;
+import com.product.game.tankbattle.resource.sprite.ControllerSpriteManager;
+import com.product.game.tankbattle.resource.sprite.TankSpriteManager;
 
 public class GameResource {
 	
 	private static GameResource instance;
 	public Font fontBig;
 	public Font fontSmall;
-	public ControllerResourceInfo controller;
+	public ControllerSpriteManager controller;
 	public BaseGameActivity activity;
 	public VertexBufferObjectManager vertexBufferObjectManager;
 	
-	public TankResourcesInfo tankResources;
+	public TankSpriteManager tankResources;
 	
 	
 	public static GameResource getInstance() {
@@ -45,10 +45,10 @@ public class GameResource {
 	
 	
 	private void configBitmapAlias(BaseGameActivity activity) {
-		tankResources = new TankResourcesInfo();
+		tankResources = new TankSpriteManager();
 		tankResources.loadBitmapTextureAtlas(activity);
 		
-		controller = new ControllerResourceInfo();
+		controller = new ControllerSpriteManager();
 		controller.dPad.loadBitmapTextureAtlas(activity);
 	}
 	

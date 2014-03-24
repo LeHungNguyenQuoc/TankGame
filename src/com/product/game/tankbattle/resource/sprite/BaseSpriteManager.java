@@ -1,4 +1,4 @@
-package com.product.game.tankbattle.actor.sprite;
+package com.product.game.tankbattle.resource.sprite;
 
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.input.touch.TouchEvent;
@@ -11,9 +11,9 @@ import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtla
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 
-import com.product.game.tankbattle.config.GameResource;
+import com.product.game.tankbattle.resource.GameResource;
 
-public abstract class BaseSpriteResourceInfo {
+public abstract class BaseSpriteManager {
 	protected BuildableBitmapTextureAtlas mBitmapTextureAtlas;
 	protected TiledTextureRegion mTiledTextureRegion;
 	
