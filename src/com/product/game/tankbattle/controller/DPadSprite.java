@@ -44,10 +44,8 @@ public class DPadSprite extends AnimatedSprite{
 			isHolding = false;
 	     }
 		 
-		 Log.d("debug", "holding == " + isHolding);
-
 		this.doCheckTouchPart((int)pTouchAreaLocalX, (int)pTouchAreaLocalY);
-		return false;
+		return true;
 	}
 	
 	
@@ -72,7 +70,6 @@ public class DPadSprite extends AnimatedSprite{
 	
 	
 	private boolean onLeftPart(float pointX, float poinY) {
-		Log.d("debug", "=========== left");
 		
 		LocalPoint touchPoint = new LocalPoint(pointX, poinY);
 		LocalPoint pA = new LocalPoint(0, 0); 
@@ -83,7 +80,6 @@ public class DPadSprite extends AnimatedSprite{
 	}
 	
 	private boolean onRightPart(float pointX, float poinY) {
-		Log.d("debug", "=========== right");
 		
 		LocalPoint touchPoint = new LocalPoint(pointX, poinY);
 		LocalPoint pA = new LocalPoint(getWidth(), 0);
@@ -93,7 +89,6 @@ public class DPadSprite extends AnimatedSprite{
 	}
 	
 	private boolean onUpPart(float pointX, float poinY) {
-		Log.d("debug", "=========== up");
 		
 		LocalPoint touchPoint = new LocalPoint(pointX, poinY);
 		LocalPoint pA = new LocalPoint(0, 0);
@@ -104,7 +99,6 @@ public class DPadSprite extends AnimatedSprite{
 	}
 	
 	private boolean onDownPart(float pointX, float poinY) {
-		Log.d("debug", "=========== down");
 
 		LocalPoint touchPoint = new LocalPoint(pointX, poinY);
 		LocalPoint pA = new LocalPoint(0, getHeight());

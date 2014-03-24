@@ -2,19 +2,15 @@ package com.product.game.tankbattle.scene;
 
 import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.color.Color;
 
-import android.util.Log;
-
 import com.product.game.tankbattle.actor.entity.tank.TankActor;
-import com.product.game.tankbattle.actor.entity.tank.UserTank;
 import com.product.game.tankbattle.actor.factory.UserTankFactory;
 import com.product.game.tankbattle.actor.setting.UserTankSetting;
 import com.product.game.tankbattle.controller.GameController;
-import com.product.game.tankbattle.controller.GameController.IGameControllerDelegate;
+import com.product.game.tankbattle.controller.GameController.FireCommand;
 
-public class ActionScreen extends TBBaseScreen implements IGameControllerDelegate{
+public class ActionScreen extends TBBaseScreen{
 
 	GameController mGameController;
 	TankActor userTank;
@@ -28,6 +24,7 @@ public class ActionScreen extends TBBaseScreen implements IGameControllerDelegat
 	}
 	
 	private void addGameUpdateListener() {
+		this.setTouchAreaBindingOnActionDownEnabled(true);
 		this.registerUpdateHandler(new IUpdateHandler() {
 			
 			@Override
@@ -36,9 +33,30 @@ public class ActionScreen extends TBBaseScreen implements IGameControllerDelegat
 			
 			@Override
 			public void onUpdate(float pSecondsElapsed) {
+				switch (mGameController.currentMoveCommand) {
+				case down:
+					userTank.stepDown();
+					break;
+				case up:
+					userTank.stepUp();
+					break;
+				case left:
+					userTank.stepLeft();
+					break;
+				case right:
+					userTank.stepRight();
+					break;
+				default:
+					break;
+				}
+				
+				if (mGameController.currentFireCommand == FireCommand.fire) {
+					userTank.stepRight();
+				}
 			}
 		});
 	}
+	
 		
 	private void initUserTanks() {
 		userTank = UserTankFactory.getInstance().makeCompleteTank(new UserTankSetting());
@@ -50,32 +68,6 @@ public class ActionScreen extends TBBaseScreen implements IGameControllerDelegat
 	private void initGameController() {
 		mGameController = new GameController();
 		mGameController.addToScene(this);
-		mGameController.setDelegate(this);
-	}
-
-	@Override
-	public void doTouchUp() {
-		userTank.stepUp();
-	}
-
-	@Override
-	public void doTouchDown() {
-		userTank.stepDown();
-	}
-
-	@Override
-	public void doTouchLeft() {
-		userTank.stepLeft();
-	}
-
-	@Override
-	public void doTouchRight() {
-		userTank.stepRight();
-	}
-
-	@Override
-	public void doTouchFire() {
-		
 	}
 
 }

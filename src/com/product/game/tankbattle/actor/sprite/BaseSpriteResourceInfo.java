@@ -1,6 +1,7 @@
 package com.product.game.tankbattle.actor.sprite;
 
 import org.andengine.entity.sprite.AnimatedSprite;
+import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -16,6 +17,9 @@ public abstract class BaseSpriteResourceInfo {
 	protected BuildableBitmapTextureAtlas mBitmapTextureAtlas;
 	protected TiledTextureRegion mTiledTextureRegion;
 	
+	public interface ITouchOnSprite {
+		public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY);
+	}
 	
 	public abstract int getFrameNumbers();
 	public abstract String getGFXResourcePath();
@@ -46,5 +50,21 @@ public abstract class BaseSpriteResourceInfo {
 			this.loadBitmapTextureAtlas(GameResource.getInstance().activity);
 		}
 		return new AnimatedSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
+	}
+	
+	public AnimatedSprite makeAnimateSprite(final ITouchOnSprite touchEvent) {
+		if (mTiledTextureRegion == null) {
+			this.loadBitmapTextureAtlas(GameResource.getInstance().activity);
+		}
+		return new AnimatedSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager) {
+			@Override
+			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,
+					float pTouchAreaLocalX, float pTouchAreaLocalY) {
+				if (touchEvent != null) {
+					return touchEvent.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
+				}
+				return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
+			}
+		};
 	}
 }

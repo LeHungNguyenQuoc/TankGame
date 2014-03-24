@@ -19,7 +19,7 @@ import com.product.game.tankbattle.config.GameResource;
 public class UserTankSetting implements TankSetting {
 	
 	final static int HIT_POINT = 1;
-	final static float SPEED = 250;
+	final static float SPEED = 500;
 	final static int STEP_DISTANCE = 10;
 	final static int TANK_LEVEL = 1;
 	
