@@ -1,5 +1,6 @@
 package com.product.game.tankbattle.actor.sprite;
 
+
 public class TankResourcesInfo extends BaseSpriteResourceInfo{
 	
 	final static int TANK_FRAME_PX_WIDTH = 60;
@@ -22,5 +23,21 @@ public class TankResourcesInfo extends BaseSpriteResourceInfo{
 	@Override
 	public int getFrameHeight() {
 		return TANK_FRAME_PX_HEIGHT;
+	}
+	@Override
+	public float getRotateLeftAngle() {
+		return -90f;
+	}
+	@Override
+	public float getRotateRightAngle() {
+		return 90f;
+	}
+	@Override
+	public float getRotateUpAngle() {
+		return 0f;
+	}
+	@Override
+	public float getRotateDownAngle() {
+		return 180f;
 	}
 }

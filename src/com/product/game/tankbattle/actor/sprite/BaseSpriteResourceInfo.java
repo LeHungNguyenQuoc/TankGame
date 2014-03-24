@@ -21,6 +21,11 @@ public abstract class BaseSpriteResourceInfo {
 	public abstract String getGFXResourcePath();
 	public abstract int getFrameWidth();
 	public abstract int getFrameHeight();
+	public abstract float getRotateLeftAngle();
+	public abstract float getRotateRightAngle();
+	public abstract float getRotateUpAngle();
+	public abstract float getRotateDownAngle();
+	
 	
 	public void loadBitmapTextureAtlas(BaseGameActivity activity) {
 		mBitmapTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 

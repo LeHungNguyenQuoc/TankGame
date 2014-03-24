@@ -12,14 +12,15 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 
 import com.product.game.tankbattle.actor.base.TBActor.ACTOR_TEAM;
+import com.product.game.tankbattle.actor.sprite.BaseSpriteResourceInfo;
 import com.product.game.tankbattle.actor.sprite.TankResourcesInfo;
 import com.product.game.tankbattle.config.GameResource;
 
 public class UserTankSetting implements TankSetting {
 	
 	final static int HIT_POINT = 1;
-	final static float SPEED = 500;
-	final static int STEP_DISTANCE = 5;
+	final static float SPEED = 250;
+	final static int STEP_DISTANCE = 10;
 	final static int TANK_LEVEL = 1;
 	
 	@Override
@@ -50,6 +51,11 @@ public class UserTankSetting implements TankSetting {
 	@Override
 	public int getStepDistance() {
 		return STEP_DISTANCE;
+	}
+
+	@Override
+	public BaseSpriteResourceInfo getSpriteResourceInfo() {
+		return GameResource.getInstance().tankResources;
 	}
 
 }

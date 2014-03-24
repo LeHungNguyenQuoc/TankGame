@@ -5,6 +5,7 @@ import org.andengine.opengl.font.FontFactory;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.activity.BaseGameActivity;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 
 import com.product.game.tankbattle.actor.sprite.ControllerResourceInfo;
@@ -38,7 +39,6 @@ public class GameResource {
 		fontSmall =  FontFactory.create(activity.getFontManager(),
 				activity.getTextureManager(), 256, 256,
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 20);
-		
 		fontSmall.load();
 		fontBig.load();
 	}

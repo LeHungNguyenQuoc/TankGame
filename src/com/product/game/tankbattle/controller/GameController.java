@@ -53,7 +53,6 @@ public class GameController implements IDPadSpriteListener{
 
 	@Override
 	public void touchDown() {
-		Log.d("debug", "touch down");
 		currentMoveCommand = MoveCommand.down;
 		if(_delegate != null) 
 			_delegate.doTouchDown();

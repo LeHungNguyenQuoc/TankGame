@@ -6,6 +6,7 @@ import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.algorithm.path.Path;
 
+import android.graphics.Point;
 import android.util.Log;
 
 public class DPadSprite extends AnimatedSprite{
@@ -42,13 +43,15 @@ public class DPadSprite extends AnimatedSprite{
 	     } else if (pSceneTouchEvent.isActionUp()) {
 			isHolding = false;
 	     }
+		 
+		 Log.d("debug", "holding == " + isHolding);
 
 		this.doCheckTouchPart((int)pTouchAreaLocalX, (int)pTouchAreaLocalY);
-		return true;
+		return false;
 	}
 	
 	
-	private void doCheckTouchPart(int pointX, int pointY) {	
+	private void doCheckTouchPart(float pointX, float pointY) {	
 		if (_touchListener == null) {
 			return;
 		}
@@ -68,43 +71,69 @@ public class DPadSprite extends AnimatedSprite{
 	}
 	
 	
-	private boolean onLeftPart(int pointX, int poinY) {
-		Path trianglePath = new Path(3);
-		trianglePath.set(0, 0, 0);
-		trianglePath.set(1, 0, (int)getHeight());
-		trianglePath.set(2, (int)getWidth()/2, (int)getHeight()/2);
+	private boolean onLeftPart(float pointX, float poinY) {
+		Log.d("debug", "=========== left");
 		
-		return trianglePath.contains(pointX, poinY);
-		
-	}
-	
-	private boolean onRightPart(int pointX, int poinY) {
-		Path trianglePath = new Path(3);
-		trianglePath.set(0, (int)getWidth(), 0);
-		trianglePath.set(1, (int)getWidth(), (int)getHeight());
-		trianglePath.set(2, (int)getWidth()/2, (int)getHeight()/2);
-		
-		return trianglePath.contains(pointX, poinY);
+		LocalPoint touchPoint = new LocalPoint(pointX, poinY);
+		LocalPoint pA = new LocalPoint(0, 0); 
+		LocalPoint pB = new LocalPoint(0, getHeight());
+		LocalPoint pC = new LocalPoint(getWidth()/2, getHeight()/2);
+		return isContaint(touchPoint, new LocalPoint [] {pA, pB, pC});
 		
 	}
 	
-	private boolean onUpPart(int pointX, int poinY) {
-		Path trianglePath = new Path(3);
-		trianglePath.set(0, 0, 0);
-		trianglePath.set(1, (int)getWidth(), 0);
-		trianglePath.set(2, (int)getWidth()/2, (int)getHeight()/2);
+	private boolean onRightPart(float pointX, float poinY) {
+		Log.d("debug", "=========== right");
 		
-		return trianglePath.contains(pointX, poinY);
+		LocalPoint touchPoint = new LocalPoint(pointX, poinY);
+		LocalPoint pA = new LocalPoint(getWidth(), 0);
+		LocalPoint pB = new LocalPoint(getWidth(), getHeight());
+		LocalPoint pC = new LocalPoint(getWidth()/2, getHeight()/2);
+		return isContaint(touchPoint, new LocalPoint [] {pA, pB, pC});		
+	}
+	
+	private boolean onUpPart(float pointX, float poinY) {
+		Log.d("debug", "=========== up");
+		
+		LocalPoint touchPoint = new LocalPoint(pointX, poinY);
+		LocalPoint pA = new LocalPoint(0, 0);
+		LocalPoint pB = new LocalPoint(getWidth(), 0);
+		LocalPoint pC = new LocalPoint(getWidth()/2, getHeight()/2);
+		return isContaint(touchPoint, new LocalPoint [] {pA, pB, pC});	
 		
 	}
 	
-	private boolean onDownPart(int pointX, int poinY) {
-		Path trianglePath = new Path(3);
-		trianglePath.set(0, 0, (int)getHeight());
-		trianglePath.set(1, (int)getWidth(), (int)getHeight());
-		trianglePath.set(2, (int)getWidth()/2, (int)getHeight()/2);
-		
-		return trianglePath.contains(pointX, poinY);
+	private boolean onDownPart(float pointX, float poinY) {
+		Log.d("debug", "=========== down");
+
+		LocalPoint touchPoint = new LocalPoint(pointX, poinY);
+		LocalPoint pA = new LocalPoint(0, getHeight());
+		LocalPoint pB = new LocalPoint(getWidth(), getHeight());
+		LocalPoint pC = new LocalPoint(getWidth()/2, getHeight()/2);
+		return isContaint(touchPoint, new LocalPoint [] {pA, pB, pC});		}
+	
+	
+	public boolean isContaint(LocalPoint test, LocalPoint[]polygon) {
+		int i;
+		int j;
+		boolean result = false;
+		for (i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+			if ((polygon[i].y > test.y) != (polygon[j].y > test.y) &&
+					(test.x < (polygon[j].x - polygon[i].x) * (test.y - polygon[i].y) / (polygon[j].y-polygon[i].y) + polygon[i].x)) {
+				result = !result;
+			}
+		}
+		return result;
+	}
+	
+	
+	class LocalPoint {
+		public LocalPoint(float x, float y) {
+			this.x = x;
+			this.y = y;
+		}
+		public float x;
+		public float y;
 		
 	}
 

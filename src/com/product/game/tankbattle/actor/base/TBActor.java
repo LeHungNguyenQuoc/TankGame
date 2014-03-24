@@ -10,6 +10,7 @@ import org.andengine.util.modifier.IModifier;
 import android.content.Entity;
 
 import com.product.game.tankbattle.actor.TBActorHelper;
+import com.product.game.tankbattle.actor.sprite.BaseSpriteResourceInfo;
 public abstract class TBActor {
 	
 	public interface IActorMovingEvent {
@@ -31,6 +32,7 @@ public abstract class TBActor {
 	public ACTOR_TYPE actorType;
 	public ACTOR_TEAM actorTeam;
 	protected IEntity actorEntity;
+	public BaseSpriteResourceInfo spriteInfo;
 	
 	public int hitPoint;
 	public float speed;
@@ -70,6 +72,10 @@ public abstract class TBActor {
 	
 	public void addToScene(Scene scene) {
 		scene.attachChild(actorEntity);
+	}
+	
+	public void rotate(Float angle) {
+		actorEntity.setRotation(angle);
 	}
 		
 	/**

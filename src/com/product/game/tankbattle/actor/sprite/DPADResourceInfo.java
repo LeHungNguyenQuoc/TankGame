@@ -30,4 +30,24 @@ public class DPADResourceInfo extends BaseSpriteResourceInfo{
 	public DPadSprite makeAnimateSprite() {
 		return new DPadSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
 	}
+
+	@Override
+	public float getRotateLeftAngle() {
+		return 0;
+	}
+
+	@Override
+	public float getRotateRightAngle() {
+		return 0;
+	}
+
+	@Override
+	public float getRotateUpAngle() {
+		return 0;
+	}
+
+	@Override
+	public float getRotateDownAngle() {
+		return 0;
+	}
 }

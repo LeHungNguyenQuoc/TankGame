@@ -3,6 +3,7 @@ package com.product.game.tankbattle.actor.entity.tank;
 import org.andengine.entity.sprite.AnimatedSprite;
 
 import com.product.game.tankbattle.actor.base.TBActor;
+import com.product.game.tankbattle.config.GameResource;
 
 public class TankActor extends TBActor{
 	public int stepDistance;
@@ -23,6 +24,7 @@ public class TankActor extends TBActor{
 			
 			@Override
 			public void onStartMoving() {
+				rotate(spriteInfo.getRotateUpAngle());
 			}
 			
 			@Override
@@ -42,6 +44,7 @@ public class TankActor extends TBActor{
 			
 			@Override
 			public void onStartMoving() {
+				rotate(spriteInfo.getRotateDownAngle());
 			}
 			
 			@Override
@@ -58,10 +61,11 @@ public class TankActor extends TBActor{
 		}
 		
 		isMoving = true;
-		moveByY(getX(), getX() - stepDistance, new IActorMovingEvent() {
+		moveByX(getX(), getX() - stepDistance, new IActorMovingEvent() {
 			
 			@Override
 			public void onStartMoving() {
+				rotate(spriteInfo.getRotateLeftAngle());
 			}
 			
 			@Override
@@ -78,10 +82,11 @@ public class TankActor extends TBActor{
 		}
 		
 		isMoving = true;
-		moveByY(getX(), getX() + stepDistance, new IActorMovingEvent() {
+		moveByX(getX(), getX() + stepDistance, new IActorMovingEvent() {
 			
 			@Override
 			public void onStartMoving() {
+				rotate(spriteInfo.getRotateRightAngle());
 			}
 			
 			@Override

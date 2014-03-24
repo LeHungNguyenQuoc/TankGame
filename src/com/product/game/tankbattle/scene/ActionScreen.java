@@ -21,8 +21,6 @@ public class ActionScreen extends TBBaseScreen implements IGameControllerDelegat
 	
 	public ActionScreen() {
 		this.setBackground(new Background(Color.BLACK));
-		this.setTouchAreaBindingOnActionDownEnabled(true);
-		this.setTouchAreaBindingOnActionMoveEnabled(true);
 		
 		this.initUserTanks();
 		this.initGameController();
