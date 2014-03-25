@@ -47,18 +47,18 @@ public abstract class BaseSpriteManager {
 		}
 	}
 	
-	public AnimatedSprite makeAnimateSprite() {
+	public AnimatedSprite makeAnimateSprite(int width, int height) {
 		if (mTiledTextureRegion == null) {
 			this.loadBitmapTextureAtlas(GameResource.getInstance().activity);
 		}
-		return new AnimatedSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
+		return new AnimatedSprite(0, 0, width, height, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
 	}
 	
-	public AnimatedSprite makeAnimateSprite(final ITouchOnSprite touchEvent) {
+	public AnimatedSprite makeAnimateSprite(int width, int height, final ITouchOnSprite touchEvent) {
 		if (mTiledTextureRegion == null) {
 			this.loadBitmapTextureAtlas(GameResource.getInstance().activity);
 		}
-		return new AnimatedSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager) {
+		return new AnimatedSprite(0, 0, width, height, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager) {
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,
 					float pTouchAreaLocalX, float pTouchAreaLocalY) {

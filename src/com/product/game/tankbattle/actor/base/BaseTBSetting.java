@@ -11,4 +11,6 @@ public interface BaseTBSetting {
 	public ACTOR_TYPE getActorType();
 	public float getDefaultAttackFPS();
 	public BaseSpriteManager getSpriteManager();
+	public int getActorWidth();
+	public int getActorHeight();
 }

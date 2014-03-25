@@ -2,6 +2,7 @@ package com.product.game.tankbattle.actor.setting;
 
 import com.product.game.tankbattle.actor.base.BaseTBSetting;
 import com.product.game.tankbattle.actor.base.TBActor.ACTOR_TYPE;
+import com.product.game.tankbattle.resolution.Resolution;
 import com.product.game.tankbattle.resource.GameResource;
 import com.product.game.tankbattle.resource.sprite.BaseSpriteManager;
 
@@ -21,7 +22,7 @@ public class UserTankSetting implements BaseTBSetting {
 	}
 	@Override
 	public int getStepDistance() {
-		return 10;
+		return Resolution.TANK_STEP_DISTANCE;
 	}
 	@Override
 	public ACTOR_TYPE getActorType() {
@@ -34,6 +35,15 @@ public class UserTankSetting implements BaseTBSetting {
 	@Override
 	public float getDefaultAttackFPS() {
 		return 5;
+	}
+	@Override
+	public int getActorWidth() {
+		return Resolution.TANK_W;
+	}
+
+	@Override
+	public int getActorHeight() {
+		return Resolution.TANK_H;
 	}
 
 }

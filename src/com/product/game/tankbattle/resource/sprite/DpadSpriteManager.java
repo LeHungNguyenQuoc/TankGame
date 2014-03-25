@@ -28,8 +28,8 @@ public class DpadSpriteManager extends BaseSpriteManager{
 
 	
 	@Override
-	public DPadSprite makeAnimateSprite() {
-		return new DPadSprite(0, 0, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
+	public DPadSprite makeAnimateSprite(int width, int height) {
+		return new DPadSprite(0, 0, width, height, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
 	}
 
 	@Override

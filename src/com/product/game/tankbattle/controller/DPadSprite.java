@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class DPadSprite extends AnimatedSprite{
 
-	public DPadSprite(float pX, float pY,
+	public DPadSprite(float pX, float pY, int width, int height, 
 			ITiledTextureRegion pTiledTextureRegion,
 			VertexBufferObjectManager vertexBufferObjectManager) {
 		super(pX, pY, pTiledTextureRegion, vertexBufferObjectManager);

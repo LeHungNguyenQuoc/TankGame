@@ -3,6 +3,7 @@ package com.product.game.tankbattle.actor.setting;
 import com.product.game.tankbattle.actor.base.BaseTBSetting;
 import com.product.game.tankbattle.actor.base.TBActor.ACTOR_TYPE;
 import com.product.game.tankbattle.config.GameConfiguration;
+import com.product.game.tankbattle.resolution.Resolution;
 import com.product.game.tankbattle.resource.GameResource;
 import com.product.game.tankbattle.resource.sprite.BaseSpriteManager;
 
@@ -25,7 +26,7 @@ public class BulletSetting implements BaseTBSetting{
 
 	@Override
 	public int getStepDistance() {
-		return (int) GameConfiguration.getInstance().CAMERA_WIDTH;
+		return (int) Resolution.SCREEN_WIDTH;
 	}
 
 	@Override
@@ -41,6 +42,16 @@ public class BulletSetting implements BaseTBSetting{
 	@Override
 	public float getDefaultAttackFPS() {
 		return 0;
+	}
+
+	@Override
+	public int getActorWidth() {
+		return Resolution.BULLET_W;
+	}
+
+	@Override
+	public int getActorHeight() {
+		return Resolution.BULLET_H;
 	}
 
 }

@@ -6,6 +6,7 @@ import org.andengine.input.touch.TouchEvent;
 
 import com.product.game.tankbattle.config.GameConfiguration;
 import com.product.game.tankbattle.controller.DPadSprite.IDPadSpriteListener;
+import com.product.game.tankbattle.resolution.Resolution;
 import com.product.game.tankbattle.resource.GameResource;
 import com.product.game.tankbattle.resource.sprite.BaseSpriteManager.ITouchOnSprite;
 
@@ -28,15 +29,16 @@ public class GameController implements IDPadSpriteListener{
 	
 	
 	public GameController() {
-		final int SPACING_OFFSET = 30;
 		
 		currentMoveCommand = MoveCommand.nothing;
-		dpadSprite = (DPadSprite) GameResource.getInstance().controller.dPad.makeAnimateSprite();
-		dpadSprite.setPosition(SPACING_OFFSET, (GameConfiguration.getInstance().CAMERA_HEIGHT - dpadSprite.getHeight()) - SPACING_OFFSET);	
+		dpadSprite = (DPadSprite) GameResource.getInstance().controller.dPad
+				.makeAnimateSprite(Resolution.DPAD_W, Resolution.DPAD_H);
+		dpadSprite.setPosition(Resolution.DPAD_OFF, (Resolution.SCREEN_HEIGHT - dpadSprite.getHeight()) - Resolution.DPAD_OFF);	
 		dpadSprite.registerListener(this);
 		
 		
-		fireSprite = GameResource.getInstance().controller.fireButton.makeAnimateSprite(new ITouchOnSprite() {
+		fireSprite = GameResource.getInstance().controller.fireButton
+				.makeAnimateSprite(Resolution.FIRE_BUTTON_W, Resolution.FIRE_BUTTON_H, new ITouchOnSprite() {
 			
 			@Override
 			public boolean onAreaTouched(TouchEvent pSceneTouchEvent,
@@ -51,8 +53,8 @@ public class GameController implements IDPadSpriteListener{
 				return true;
 			}
 		});
-		fireSprite.setPosition(GameConfiguration.getInstance().CAMERA_WIDTH - fireSprite.getWidth() - SPACING_OFFSET,
-				(GameConfiguration.getInstance().CAMERA_HEIGHT - fireSprite.getHeight()) - SPACING_OFFSET);
+		fireSprite.setPosition(Resolution.SCREEN_WIDTH - fireSprite.getWidth() - Resolution.DPAD_OFF,
+				(Resolution.SCREEN_HEIGHT - fireSprite.getHeight()) - Resolution.DPAD_OFF);
 	}
 	
 

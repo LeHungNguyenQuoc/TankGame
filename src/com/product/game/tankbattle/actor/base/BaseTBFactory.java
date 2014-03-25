@@ -19,7 +19,7 @@ public abstract class BaseTBFactory<T extends TBActor, S extends BaseTBSetting>{
 		actor.attackFPS = setting.getDefaultAttackFPS();
 		
 		actor.direction = actor.spriteInfo.getDefaultDirection();
-		actor.actorEntity = actor.spriteInfo.makeAnimateSprite();
+		actor.actorEntity = actor.spriteInfo.makeAnimateSprite(setting.getActorWidth(), setting.getActorHeight());
 		
 		return actor;
 	}	
