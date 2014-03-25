@@ -15,7 +15,7 @@ public class BulletSetting implements BaseTBSetting{
 
 	@Override
 	public float getDefaultSpeed() {
-		return 1000;
+		return 500;
 	}
 
 	@Override

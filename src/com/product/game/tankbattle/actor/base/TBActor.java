@@ -79,6 +79,10 @@ public abstract class TBActor {
 	}
 	
 	
+	public void setSpriteFrame(int index) {
+		actorEntity.setCurrentTileIndex(index);
+	}
+		
 	public void setEngineEntity(AnimatedSprite entity) {
 		actorEntity = entity;
 	}

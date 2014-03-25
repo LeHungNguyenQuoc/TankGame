@@ -15,7 +15,7 @@ public class TankActor extends TBActor{
 	}
 	
 	
-	public void performFire() {
+	public void fireBullet() {
 		
 		if (!couldBeAttack()) {
 			return;
