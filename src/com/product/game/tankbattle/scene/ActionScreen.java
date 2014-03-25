@@ -4,7 +4,9 @@ import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.util.color.Color;
 
+import com.product.game.tankbattle.actor.entity.bullet.BulletActor;
 import com.product.game.tankbattle.actor.entity.tank.TankActor;
+import com.product.game.tankbattle.actor.factory.BulletFactory;
 import com.product.game.tankbattle.actor.factory.UserTankFactory;
 import com.product.game.tankbattle.actor.setting.UserTankSetting;
 import com.product.game.tankbattle.controller.GameController;
@@ -33,6 +35,13 @@ public class ActionScreen extends TBBaseScreen{
 			
 			@Override
 			public void onUpdate(float pSecondsElapsed) {
+				
+				if (mGameController.currentFireCommand == FireCommand.fire) {
+					BulletActor bulletActor = BulletFactory.getInstances().makeCompleteActor();
+					bulletActor.addToScene(ActionScreen.this);
+					bulletActor.setPosition(10, 10);
+					bulletActor.stepDown();
+				}
 				switch (mGameController.currentMoveCommand) {
 				case down:
 					userTank.stepDown();
@@ -49,10 +58,7 @@ public class ActionScreen extends TBBaseScreen{
 				default:
 					break;
 				}
-				
-				if (mGameController.currentFireCommand == FireCommand.fire) {
-					userTank.stepRight();
-				}
+
 			}
 		});
 	}

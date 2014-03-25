@@ -8,6 +8,7 @@ import org.andengine.ui.activity.BaseGameActivity;
 import android.graphics.Color;
 import android.graphics.Typeface;
 
+import com.product.game.tankbattle.resource.sprite.BulletSpriteManager;
 import com.product.game.tankbattle.resource.sprite.ControllerSpriteManager;
 import com.product.game.tankbattle.resource.sprite.TankSpriteManager;
 
@@ -21,6 +22,7 @@ public class GameResource {
 	public VertexBufferObjectManager vertexBufferObjectManager;
 	
 	public TankSpriteManager tankResources;
+	public BulletSpriteManager bulletResources;
 	
 	
 	public static GameResource getInstance() {
@@ -50,6 +52,9 @@ public class GameResource {
 		
 		controller = new ControllerSpriteManager();
 		controller.dPad.loadBitmapTextureAtlas(activity);
+		
+		bulletResources = new BulletSpriteManager();
+		bulletResources.loadBitmapTextureAtlas(activity);
 	}
 	
 	

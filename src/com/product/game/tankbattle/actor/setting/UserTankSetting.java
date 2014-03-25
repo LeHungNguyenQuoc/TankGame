@@ -1,20 +1,10 @@
 package com.product.game.tankbattle.actor.setting;
 
-import org.andengine.entity.IEntity;
 import org.andengine.entity.sprite.AnimatedSprite;
-import org.andengine.opengl.texture.TextureOptions;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSource;
-import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
-import org.andengine.opengl.texture.region.TiledTextureRegion;
-import org.andengine.ui.activity.BaseGameActivity;
 
 import com.product.game.tankbattle.actor.base.TBActor.ACTOR_TEAM;
 import com.product.game.tankbattle.resource.GameResource;
 import com.product.game.tankbattle.resource.sprite.BaseSpriteManager;
-import com.product.game.tankbattle.resource.sprite.TankSpriteManager;
 
 public class UserTankSetting implements TankSetting {
 	
@@ -39,7 +29,7 @@ public class UserTankSetting implements TankSetting {
 	}
 
 	@Override
-	public IEntity getEngineEntity() {
+	public AnimatedSprite getEngineEntity() {
 		return GameResource.getInstance().tankResources.makeAnimateSprite();
 	}
 

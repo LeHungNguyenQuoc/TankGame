@@ -5,6 +5,7 @@ import org.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.andengine.entity.modifier.MoveXModifier;
 import org.andengine.entity.modifier.MoveYModifier;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.util.modifier.IModifier;
 
 import android.content.Entity;
@@ -31,14 +32,14 @@ public abstract class TBActor {
 	public int actorID;	
 	public ACTOR_TYPE actorType;
 	public ACTOR_TEAM actorTeam;
-	protected IEntity actorEntity;
+	protected AnimatedSprite actorEntity;
 	public BaseSpriteManager spriteInfo;
 	
 	public int hitPoint;
 	public float speed;
 	public int level;
+	public int stepDistance;
 
-	
 	public boolean canAttack;
 
 	protected boolean isMoving;
@@ -62,7 +63,7 @@ public abstract class TBActor {
 	}
 	
 	
-	public void setEngineEntity(IEntity entity) {
+	public void setEngineEntity(AnimatedSprite entity) {
 		actorEntity = entity;
 	}
 	
@@ -132,5 +133,93 @@ public abstract class TBActor {
 				}
 			}
 		}));
+	}
+	
+	
+	
+	/**
+	 * actor steps
+	 */
+	public void stepUp() {
+		if (isMoving) {
+			return;
+		}
+		
+		isMoving = true;
+		moveByY(getY(), getY() - stepDistance, new IActorMovingEvent() {
+			
+			@Override
+			public void onStartMoving() {
+				rotate(spriteInfo.getRotateUpAngle());
+			}
+			
+			@Override
+			public void onEndMoving() {
+				isMoving = false;
+			}
+		});
+	}
+	
+	public void stepDown() {
+		if (isMoving) {
+			return;
+		}
+		
+		isMoving = true;
+		moveByY(getY(), getY() + stepDistance, new IActorMovingEvent() {
+			
+			@Override
+			public void onStartMoving() {
+				rotate(spriteInfo.getRotateDownAngle());
+			}
+			
+			@Override
+			public void onEndMoving() {
+				isMoving = false;
+			}
+		});
+		
+	}
+	
+	public void stepLeft() {
+		if (isMoving) {
+			return;
+		}
+		
+		isMoving = true;
+		moveByX(getX(), getX() - stepDistance, new IActorMovingEvent() {
+			
+			@Override
+			public void onStartMoving() {
+				rotate(spriteInfo.getRotateLeftAngle());
+			}
+			
+			@Override
+			public void onEndMoving() {
+				isMoving = false;
+			}
+		});
+		
+	}
+	
+	public void stepRight() {
+		if (isMoving) {
+			return;
+		}
+		
+		isMoving = true;
+		moveByX(getX(), getX() + stepDistance, new IActorMovingEvent() {
+			
+			@Override
+			public void onStartMoving() {
+				rotate(spriteInfo.getRotateRightAngle());
+			}
+			
+			@Override
+			public void onEndMoving() {
+				isMoving = false;
+			}
+		});
+		
 	}
 }

@@ -28,9 +28,11 @@ public class GameController implements IDPadSpriteListener{
 	
 	
 	public GameController() {
+		final int SPACING_OFFSET = 30;
+		
 		currentMoveCommand = MoveCommand.nothing;
 		dpadSprite = (DPadSprite) GameResource.getInstance().controller.dPad.makeAnimateSprite();
-		dpadSprite.setPosition(0, (GameConfiguration.getInstance().CAMERA_HEIGHT - dpadSprite.getHeight()) /2);	
+		dpadSprite.setPosition(SPACING_OFFSET, (GameConfiguration.getInstance().CAMERA_HEIGHT - dpadSprite.getHeight()) - SPACING_OFFSET);	
 		dpadSprite.registerListener(this);
 		
 		
@@ -46,11 +48,11 @@ public class GameController implements IDPadSpriteListener{
 					 currentFireCommand = FireCommand.nothing;
 				 }
 
-				return true;
+				return false;
 			}
 		});
-		fireSprite.setPosition(GameConfiguration.getInstance().CAMERA_WIDTH - fireSprite.getWidth(),
-				(GameConfiguration.getInstance().CAMERA_HEIGHT - dpadSprite.getHeight()) /2);
+		fireSprite.setPosition(GameConfiguration.getInstance().CAMERA_WIDTH - fireSprite.getWidth() - SPACING_OFFSET,
+				(GameConfiguration.getInstance().CAMERA_HEIGHT - fireSprite.getHeight()) - SPACING_OFFSET);
 	}
 	
 
