@@ -12,6 +12,7 @@ import com.product.game.tankbattle.actor.entity.tank.TankActor;
 import com.product.game.tankbattle.actor.factory.BulletFactory;
 import com.product.game.tankbattle.actor.factory.EnermyTankFactory;
 import com.product.game.tankbattle.actor.factory.UserTankFactory;
+import com.product.game.tankbattle.actor.map.BattleMap;
 import com.product.game.tankbattle.actor.setting.UserTankSetting;
 import com.product.game.tankbattle.controller.GameController;
 import com.product.game.tankbattle.controller.GameController.FireCommand;
@@ -21,10 +22,11 @@ public class ActionScreen extends TBBaseScreen{
 	GameController mGameController;
 	TankActor userTank;
 	ArrayList<EnermyTank> arrEnermyTanks;
+	BattleMap mBattleMap;
 	
 	public ActionScreen() {
 		this.setBackground(new Background(Color.BLACK));
-		
+		this.initBattleMap();
 		this.initUserTanks();
 		this.initEnermyTanks();
 		this.initGameController();
@@ -66,10 +68,14 @@ public class ActionScreen extends TBBaseScreen{
 		});
 	}
 	
-		
+	
+	private void initBattleMap() {
+		mBattleMap = new BattleMap(this);
+	}
+	
 	private void initUserTanks() {
 		userTank = UserTankFactory.getInstance().makeCompleteActor();
-		userTank.addToScene(this);
+		userTank.addToBattleMap(mBattleMap);
 		userTank.setPosition(100, 100);
 	}
 	
@@ -78,7 +84,7 @@ public class ActionScreen extends TBBaseScreen{
 		arrEnermyTanks = new ArrayList<EnermyTank>();
 		for (int i = 0; i < 10; i++) {
 			EnermyTank tank = EnermyTankFactory.getInstance().makeCompleteActor();
-			tank.addToScene(this);
+			tank.addToBattleMap(mBattleMap);
 			arrEnermyTanks.add(tank);
 			
 			tank.setPosition(i* tank.getWidth() + 2, 0);

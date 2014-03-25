@@ -11,6 +11,7 @@ import org.andengine.util.modifier.IModifier;
 import android.content.Entity;
 
 import com.product.game.tankbattle.actor.TBActorHelper;
+import com.product.game.tankbattle.actor.map.BattleMap;
 import com.product.game.tankbattle.resource.sprite.BaseSpriteManager;
 public abstract class TBActor {
 	
@@ -50,6 +51,7 @@ public abstract class TBActor {
 	private long mLastAttackTimeMS;
 	
 	protected Scene mScene;
+	protected BattleMap mBattleMap;
 	
 	public TBActor() {
 		isMoving = false;
@@ -91,9 +93,10 @@ public abstract class TBActor {
 		return actorEntity;
 	}
 	
-	public void addToScene(Scene scene) {
-		mScene = scene;
+	public void addToBattleMap(BattleMap map) {
+		mScene = map.mScene;
 		mScene.attachChild(actorEntity);
+		mBattleMap = map;
 	}
 	
 	public void rotate(Float angle) {
@@ -107,6 +110,7 @@ public abstract class TBActor {
 	 * @param eventListener
 	 */
 	public void moveByX(float fromX, float toX, final IActorMovingEvent eventListener ) {
+		
 		float duration = TBActorHelper.getDurationSecond(fromX, toX, speed);
 		actorEntity.registerEntityModifier(new MoveXModifier(duration, fromX, toX, new IEntityModifierListener() {
 			
@@ -135,6 +139,7 @@ public abstract class TBActor {
 	 * @param eventListener
 	 */
 	public void moveByY(float fromY, float toY, final IActorMovingEvent eventListener ) {
+		
 		float duration = TBActorHelper.getDurationSecond(fromY, toY, speed);
 		actorEntity.registerEntityModifier(new MoveYModifier(duration, fromY, toY, new IEntityModifierListener() {
 			
@@ -166,12 +171,16 @@ public abstract class TBActor {
 			return;
 		}
 		
+		rotateUp();
+		float newY = Math.max(getY() - stepDistance, mBattleMap.rectMap.top);
+		if (newY >= getY()) {
+			return;
+		}
 		isMoving = true;
-		moveByY(getY(), getY() - stepDistance, new IActorMovingEvent() {
+		moveByY(getY(), newY, new IActorMovingEvent() {
 			
 			@Override
 			public void onStartMoving() {
-				rotateUp();
 			}
 			
 			@Override
@@ -189,12 +198,16 @@ public abstract class TBActor {
 			return;
 		}
 		
+		rotateDown();
+		float newY = Math.min(getY() + stepDistance, mBattleMap.rectMap.bottom - getHeight());
+		if (newY <= getY()) {
+			return;
+		}
 		isMoving = true;
-		moveByY(getY(), getY() + stepDistance, new IActorMovingEvent() {
+		moveByY(getY(), newY, new IActorMovingEvent() {
 			
 			@Override
 			public void onStartMoving() {
-				rotateDown();
 			}
 			
 			@Override
@@ -213,12 +226,16 @@ public abstract class TBActor {
 			return;
 		}
 		
+		rotateLeft();
+		float newX = Math.max(getX() - stepDistance, mBattleMap.rectMap.left);
+		if (newX >= getX()) {
+			return;
+		}
 		isMoving = true;
-		moveByX(getX(), getX() - stepDistance, new IActorMovingEvent() {
+		moveByX(getX(), newX, new IActorMovingEvent() {
 			
 			@Override
 			public void onStartMoving() {
-				rotateLeft();
 			}
 			
 			@Override
@@ -237,12 +254,17 @@ public abstract class TBActor {
 			return;
 		}
 		
+		rotateRight();
+		float newX = Math.min(getX() + stepDistance, mBattleMap.rectMap.right - getWidth());
+		if (newX <= getX()) {
+			return;
+		}
 		isMoving = true;
-		moveByX(getX(), getX() + stepDistance, new IActorMovingEvent() {
+
+		moveByX(getX(), newX, new IActorMovingEvent() {
 			
 			@Override
 			public void onStartMoving() {
-				rotateRight();
 			}
 			
 			@Override

@@ -25,10 +25,7 @@ public class TankActor extends TBActor{
 			return;
 		}
 		
-		BulletActor bullet = BulletFactory.getInstances().makeCompleteActor();
-		bullet.addToScene(mScene);
-		bullet.setPosition(getX() + getWidth() / 2  - bullet.getWidth()/2 , 
-				getY() + getHeight()/2 - bullet.getHeight()/2);
+		BulletActor bullet = this.makeTankBullet();
 				
 		switch (direction) {
 		case Down:
@@ -47,6 +44,14 @@ public class TankActor extends TBActor{
 		default:
 			break;
 		}
+	}
+	
+	private BulletActor makeTankBullet() {
+		BulletActor bullet = BulletFactory.getInstances().makeCompleteActor();
+		bullet.addToBattleMap(mBattleMap);
+		bullet.setPosition(getX() + getWidth() / 2  - bullet.getWidth()/2 , 
+				getY() + getHeight()/2 - bullet.getHeight()/2);
+		return bullet;
 	}
 	
 }
