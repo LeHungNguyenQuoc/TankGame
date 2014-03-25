@@ -111,6 +111,11 @@ public abstract class TBActor {
 	 */
 	public void moveByX(float fromX, float toX, final IActorMovingEvent eventListener ) {
 		
+		if (fromX == toX) {
+			isMoving = false;
+			return;
+		}
+		
 		float duration = TBActorHelper.getDurationSecond(fromX, toX, speed);
 		actorEntity.registerEntityModifier(new MoveXModifier(duration, fromX, toX, new IEntityModifierListener() {
 			
@@ -139,6 +144,11 @@ public abstract class TBActor {
 	 * @param eventListener
 	 */
 	public void moveByY(float fromY, float toY, final IActorMovingEvent eventListener ) {
+		
+		if (fromY == toY) {
+			isMoving = false;
+			return;
+		}
 		
 		float duration = TBActorHelper.getDurationSecond(fromY, toY, speed);
 		actorEntity.registerEntityModifier(new MoveYModifier(duration, fromY, toY, new IEntityModifierListener() {
@@ -173,9 +183,9 @@ public abstract class TBActor {
 		
 		rotateUp();
 		float newY = Math.max(getY() - stepDistance, mBattleMap.rectMap.top);
-		if (newY >= getY()) {
-			return;
-		}
+//		if (newY >= getY()) {
+//			return;
+//		}
 		isMoving = true;
 		moveByY(getY(), newY, new IActorMovingEvent() {
 			
@@ -200,9 +210,9 @@ public abstract class TBActor {
 		
 		rotateDown();
 		float newY = Math.min(getY() + stepDistance, mBattleMap.rectMap.bottom - getHeight());
-		if (newY <= getY()) {
-			return;
-		}
+//		if (newY <= getY()) {
+//			return;
+//		}
 		isMoving = true;
 		moveByY(getY(), newY, new IActorMovingEvent() {
 			
@@ -228,9 +238,9 @@ public abstract class TBActor {
 		
 		rotateLeft();
 		float newX = Math.max(getX() - stepDistance, mBattleMap.rectMap.left);
-		if (newX >= getX()) {
-			return;
-		}
+//		if (newX >= getX()) {
+//			return;
+//		}
 		isMoving = true;
 		moveByX(getX(), newX, new IActorMovingEvent() {
 			
@@ -256,9 +266,9 @@ public abstract class TBActor {
 		
 		rotateRight();
 		float newX = Math.min(getX() + stepDistance, mBattleMap.rectMap.right - getWidth());
-		if (newX <= getX()) {
-			return;
-		}
+//		if (newX <= getX()) {
+//			return;
+//		}
 		isMoving = true;
 
 		moveByX(getX(), newX, new IActorMovingEvent() {
