@@ -9,7 +9,7 @@ public class ButtonSpriteManager extends BaseSpriteManager{
 
 	@Override
 	public String getGFXResourcePath() {
-		return "gfx/fire_sprite.png";
+		return "fire_sprite.png";
 	}
 
 	@Override

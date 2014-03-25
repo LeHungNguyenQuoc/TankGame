@@ -12,7 +12,7 @@ public class DpadSpriteManager extends BaseSpriteManager{
 
 	@Override
 	public String getGFXResourcePath() {
-		return "gfx/dpad_test.png";
+		return "dpad_test.png";
 	}
 
 	@Override

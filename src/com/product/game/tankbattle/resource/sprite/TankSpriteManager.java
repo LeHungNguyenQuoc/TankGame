@@ -6,7 +6,7 @@ public class TankSpriteManager extends BaseSpriteManager{
 	final static int TANK_FRAME_PX_WIDTH = 60;
 	final static int TANK_FRAME_PX_HEIGHT = 60;
 	final static int MAX_FRAME = 6;
-	final static String GFX_PATH_STRING  = "gfx/tank_sprite.png";
+	final static String GFX_PATH_STRING  = "tank_sprite.png";
 	
 	@Override
 	public int getFrameNumbers() {

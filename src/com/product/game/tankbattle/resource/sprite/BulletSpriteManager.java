@@ -9,7 +9,7 @@ public class BulletSpriteManager extends BaseSpriteManager{
 
 	@Override
 	public String getGFXResourcePath() {
-		return "gfx/bullet_sprite.png";
+		return "bullet_sprite.png";
 	}
 
 	@Override

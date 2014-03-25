@@ -48,7 +48,7 @@ public class GameController implements IDPadSpriteListener{
 					 currentFireCommand = FireCommand.nothing;
 				 }
 
-				return false;
+				return true;
 			}
 		});
 		fireSprite.setPosition(GameConfiguration.getInstance().CAMERA_WIDTH - fireSprite.getWidth() - SPACING_OFFSET,

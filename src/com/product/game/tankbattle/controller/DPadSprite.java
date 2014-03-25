@@ -45,7 +45,7 @@ public class DPadSprite extends AnimatedSprite{
 	     }
 		 
 		this.doCheckTouchPart((int)pTouchAreaLocalX, (int)pTouchAreaLocalY);
-		return false;
+		return true;
 	}
 	
 	

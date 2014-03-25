@@ -35,7 +35,7 @@ public abstract class BaseSpriteManager {
 		mBitmapTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 
 				getFrameWidth() + 10, getFrameHeight()* getFrameNumbers() + 10 , TextureOptions.NEAREST);
 		mTiledTextureRegion = BitmapTextureAtlasTextureRegionFactory
-				.createTiledFromAsset(mBitmapTextureAtlas, activity, getGFXResourcePath(), 1 , getFrameNumbers());
+				.createTiledFromAsset(mBitmapTextureAtlas, activity, "gfx/"+ getGFXResourcePath(), 1 , getFrameNumbers());
 		try {
 			mBitmapTextureAtlas
 			.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(
