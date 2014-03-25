@@ -1,21 +1,27 @@
 package com.product.game.tankbattle.actor.factory;
 
-import com.product.game.tankbattle.actor.entity.tank.TankActor;
+import com.product.game.tankbattle.actor.base.BaseTBFactory;
 import com.product.game.tankbattle.actor.entity.tank.UserTank;
+import com.product.game.tankbattle.actor.setting.UserTankSetting;
 
-public class UserTankFactory extends TankFactory {
-	
-	private static UserTankFactory _instance;
-	
+public class UserTankFactory extends BaseTBFactory<UserTank, UserTankSetting> {
+
+	private static UserTankFactory instance;
 	public static UserTankFactory getInstance() {
-		if (_instance == null) {
-			_instance = new UserTankFactory();
+		if (instance == null) {
+			instance = new UserTankFactory();
 		}
-		return _instance;
+		return instance;
 	}
 	
 	@Override
-	protected TankActor makePlainTank() {
+	protected UserTank makePlainActor() {
 		return new UserTank();
 	}
+
+	@Override
+	protected UserTankSetting orderSetting() {
+		return new UserTankSetting();
+	}
+	
 }

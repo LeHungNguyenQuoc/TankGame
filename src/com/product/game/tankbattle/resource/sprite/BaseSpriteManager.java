@@ -11,6 +11,7 @@ import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtla
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 
+import com.product.game.tankbattle.actor.base.TBActor.ACTOR_DIRECTION;
 import com.product.game.tankbattle.resource.GameResource;
 
 public abstract class BaseSpriteManager {
@@ -29,6 +30,7 @@ public abstract class BaseSpriteManager {
 	public abstract float getRotateRightAngle();
 	public abstract float getRotateUpAngle();
 	public abstract float getRotateDownAngle();
+	public abstract ACTOR_DIRECTION getDefaultDirection();
 	
 	
 	public void loadBitmapTextureAtlas(BaseGameActivity activity) {

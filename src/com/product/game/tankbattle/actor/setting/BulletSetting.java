@@ -34,14 +34,13 @@ public class BulletSetting implements BaseTBSetting{
 	}
 
 	@Override
-	public boolean canAttack() {
-		return true;
-	}
-
-
-	@Override
 	public BaseSpriteManager getSpriteManager() {
 		return GameResource.getInstance().bulletResources;
+	}
+
+	@Override
+	public float getDefaultAttackFPS() {
+		return 0;
 	}
 
 }

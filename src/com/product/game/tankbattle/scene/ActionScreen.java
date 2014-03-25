@@ -37,10 +37,7 @@ public class ActionScreen extends TBBaseScreen{
 			public void onUpdate(float pSecondsElapsed) {
 				
 				if (mGameController.currentFireCommand == FireCommand.fire) {
-					BulletActor bulletActor = BulletFactory.getInstances().makeCompleteActor();
-					bulletActor.addToScene(ActionScreen.this);
-					bulletActor.setPosition(10, 10);
-					bulletActor.stepDown();
+					userTank.performFire();
 				}
 				switch (mGameController.currentMoveCommand) {
 				case down:
@@ -65,7 +62,7 @@ public class ActionScreen extends TBBaseScreen{
 	
 		
 	private void initUserTanks() {
-		userTank = UserTankFactory.getInstance().makeCompleteTank(new UserTankSetting());
+		userTank = UserTankFactory.getInstance().makeCompleteActor();
 		userTank.addToScene(this);
 		userTank.setPosition(100, 100);
 	}

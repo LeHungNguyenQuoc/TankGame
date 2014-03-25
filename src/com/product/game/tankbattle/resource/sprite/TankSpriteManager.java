@@ -1,5 +1,7 @@
 package com.product.game.tankbattle.resource.sprite;
 
+import com.product.game.tankbattle.actor.base.TBActor.ACTOR_DIRECTION;
+
 
 public class TankSpriteManager extends BaseSpriteManager{
 	
@@ -39,5 +41,9 @@ public class TankSpriteManager extends BaseSpriteManager{
 	@Override
 	public float getRotateDownAngle() {
 		return 180f;
+	}
+	@Override
+	public ACTOR_DIRECTION getDefaultDirection() {
+		return ACTOR_DIRECTION.Up;
 	}
 }

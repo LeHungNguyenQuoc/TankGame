@@ -9,6 +9,6 @@ public interface BaseTBSetting {
 	public int getDefaultLevel();
 	public int getStepDistance();
 	public ACTOR_TYPE getActorType();
-	public boolean canAttack();
+	public float getDefaultAttackFPS();
 	public BaseSpriteManager getSpriteManager();
 }

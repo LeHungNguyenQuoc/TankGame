@@ -1,5 +1,7 @@
 package com.product.game.tankbattle.resource.sprite;
 
+import com.product.game.tankbattle.actor.base.TBActor.ACTOR_DIRECTION;
+
 public class BulletSpriteManager extends BaseSpriteManager{
 
 	@Override
@@ -40,6 +42,11 @@ public class BulletSpriteManager extends BaseSpriteManager{
 	@Override
 	public float getRotateDownAngle() {
 		return 90f;
+	}
+
+	@Override
+	public ACTOR_DIRECTION getDefaultDirection() {
+		return ACTOR_DIRECTION.Right;
 	}
 
 }

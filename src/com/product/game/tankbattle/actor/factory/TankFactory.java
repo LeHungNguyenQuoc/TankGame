@@ -12,7 +12,6 @@ public abstract class TankFactory {
 	public TankActor makeCompleteTank(TankSetting setting) {
 		TankActor tankActor = makePlainTank();
 		//tank default
-		tankActor.canAttack = true;
 		tankActor.actorType = ACTOR_TYPE.Tank;
 		
 		// tank attribute

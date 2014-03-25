@@ -13,11 +13,12 @@ public abstract class BaseTBFactory<T extends TBActor, S extends BaseTBSetting>{
 		actor.spriteInfo = setting.getSpriteManager();
 		actor.actorType = setting.getActorType();
 		actor.speed = setting.getDefaultSpeed();
-		actor.canAttack = setting.canAttack();
 		actor.hitPoint = setting.getDefaultHitPoint();
 		actor.level = setting.getDefaultLevel();
 		actor.stepDistance = setting.getStepDistance();
+		actor.attackFPS = setting.getDefaultAttackFPS();
 		
+		actor.direction = actor.spriteInfo.getDefaultDirection();
 		actor.actorEntity = actor.spriteInfo.makeAnimateSprite();
 		
 		return actor;

@@ -1,5 +1,7 @@
 package com.product.game.tankbattle.resource.sprite;
 
+import com.product.game.tankbattle.actor.base.TBActor.ACTOR_DIRECTION;
+
 public class ButtonSpriteManager extends BaseSpriteManager{
 
 	@Override
@@ -40,6 +42,11 @@ public class ButtonSpriteManager extends BaseSpriteManager{
 	@Override
 	public float getRotateDownAngle() {
 		return 0;
+	}
+
+	@Override
+	public ACTOR_DIRECTION getDefaultDirection() {
+		return ACTOR_DIRECTION.Unknow;
 	}
 
 }

@@ -29,23 +29,31 @@ public abstract class TBActor {
 		User, Enermy, Monster, Neutral,
 	}
 	
+	public enum ACTOR_DIRECTION {
+		Up, Down, Left, Right, Unknow,
+	}
+	
+	
 	public int actorID;	
 	public ACTOR_TYPE actorType;
 	public ACTOR_TEAM actorTeam;
 	protected AnimatedSprite actorEntity;
 	public BaseSpriteManager spriteInfo;
-	
 	public int hitPoint;
 	public float speed;
 	public int level;
 	public int stepDistance;
-
-	public boolean canAttack;
-
-	protected boolean isMoving;
+	public float attackFPS;
+	public ACTOR_DIRECTION direction;
+	
+	private boolean isMoving;
+	private long mLastAttackTimeMS;
+	
+	protected Scene mScene;
 	
 	public TBActor() {
 		isMoving = false;
+		mLastAttackTimeMS = 0;
 		actorID = actorIdValue;
 		actorIdValue ++;
 	}
@@ -56,6 +64,14 @@ public abstract class TBActor {
 	
 	public float getY() {
 		return actorEntity.getY();
+	}
+	
+	public float getWidth() {
+		return actorEntity.getWidth();
+	}
+	
+	public float getHeight() {
+		return actorEntity.getHeight();
 	}
 	
 	public void setPosition(float pX, float pY) {
@@ -72,7 +88,8 @@ public abstract class TBActor {
 	}
 	
 	public void addToScene(Scene scene) {
-		scene.attachChild(actorEntity);
+		mScene = scene;
+		mScene.attachChild(actorEntity);
 	}
 	
 	public void rotate(Float angle) {
@@ -138,7 +155,7 @@ public abstract class TBActor {
 	
 	
 	/**
-	 * actor steps
+	 * actor steps up
 	 */
 	public void stepUp() {
 		if (isMoving) {
@@ -150,7 +167,7 @@ public abstract class TBActor {
 			
 			@Override
 			public void onStartMoving() {
-				rotate(spriteInfo.getRotateUpAngle());
+				rotateUp();
 			}
 			
 			@Override
@@ -160,6 +177,9 @@ public abstract class TBActor {
 		});
 	}
 	
+	/**
+	 * actor steps down
+	 */
 	public void stepDown() {
 		if (isMoving) {
 			return;
@@ -170,7 +190,7 @@ public abstract class TBActor {
 			
 			@Override
 			public void onStartMoving() {
-				rotate(spriteInfo.getRotateDownAngle());
+				rotateDown();
 			}
 			
 			@Override
@@ -181,6 +201,9 @@ public abstract class TBActor {
 		
 	}
 	
+	/**
+	 * actor steps left
+	 */
 	public void stepLeft() {
 		if (isMoving) {
 			return;
@@ -191,7 +214,7 @@ public abstract class TBActor {
 			
 			@Override
 			public void onStartMoving() {
-				rotate(spriteInfo.getRotateLeftAngle());
+				rotateLeft();
 			}
 			
 			@Override
@@ -202,6 +225,9 @@ public abstract class TBActor {
 		
 	}
 	
+	/**
+	 * actor steps right
+	 */
 	public void stepRight() {
 		if (isMoving) {
 			return;
@@ -212,7 +238,7 @@ public abstract class TBActor {
 			
 			@Override
 			public void onStartMoving() {
-				rotate(spriteInfo.getRotateRightAngle());
+				rotateRight();
 			}
 			
 			@Override
@@ -221,5 +247,47 @@ public abstract class TBActor {
 			}
 		});
 		
+	}
+	
+	/**
+	 * actor rotate up 
+	 */
+	public void rotateUp() {
+		this.rotate(spriteInfo.getRotateUpAngle());
+		direction = ACTOR_DIRECTION.Up;
+	}
+	/**
+	 * actor rotate down 
+	 */
+	public void rotateDown() {
+		this.rotate(spriteInfo.getRotateDownAngle());
+		direction = ACTOR_DIRECTION.Down;
+	}
+	/**
+	 * actor rotate left 
+	 */
+	public void rotateLeft() {
+		this.rotate(spriteInfo.getRotateLeftAngle());
+		direction = ACTOR_DIRECTION.Left;
+	}
+	/**
+	 * actor rotate right 
+	 */
+	public void rotateRight() {
+		this.rotate(spriteInfo.getRotateRightAngle());
+		direction = ACTOR_DIRECTION.Right;
+	}
+	
+	/**
+	 * actor attack
+	 */
+	protected boolean couldBeAttack() {
+		long curMS = System.currentTimeMillis();
+		if (curMS - mLastAttackTimeMS > ((float)1000/attackFPS) ) {
+			mLastAttackTimeMS = curMS;
+			return true;
+		}
+		
+		return false;
 	}
 }
