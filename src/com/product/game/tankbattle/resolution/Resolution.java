@@ -12,8 +12,8 @@ public interface Resolution {
 	//TANK
 	public final static int TANK_W = TILESET_SIZE;
 	public final static int TANK_H = TILESET_SIZE;
-	public final static int TANK_USER_STEP_DISTANCE = TILESET_SIZE/10;
-	public final static int TANK_ENEMY_STEP_DISTANCE = TILESET_SIZE;
+	public final static int TANK_USER_STEP_DISTANCE = TILESET_SIZE/2;
+	public final static int TANK_ENEMY_STEP_DISTANCE = TILESET_SIZE/2;
 	
 	//BRICK 
 	public final static int BRICK_W = TILESET_SIZE;
@@ -23,11 +23,12 @@ public interface Resolution {
 	//BULLET
 	public final static int BULLET_W = TILESET_SIZE/3;
 	public final static int BULLET_H = TILESET_SIZE/3;
+	public final static int BULLET_STEP = TILESET_SIZE;
 	
 	
 	//MAP
 	public final static int BATTLE_H = SCREEN_HEIGHT;
-	public final static int BATTLE_W = BATTLE_H;
+	public final static int BATTLE_W = BATTLE_H * 4/3;
 	
 	
 	//DPAD

@@ -26,7 +26,7 @@ public class BulletSetting implements BaseTBSetting{
 
 	@Override
 	public int getStepDistance() {
-		return (int) Resolution.SCREEN_WIDTH;
+		return Resolution.BULLET_STEP;
 	}
 
 	@Override

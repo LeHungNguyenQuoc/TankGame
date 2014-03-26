@@ -26,6 +26,11 @@ public class BrickFactory extends BaseTBFactory<BrickActor, BrickSetting> {
 	public BrickActor makeBrickType(int type) {
 		BrickActor brickActor = makeCompleteActor();
 		brickActor.setSpriteFrame(type);
+		if (type == 3 || type == 2) {
+			brickActor.couldBeThrough = true;
+		} else {
+			brickActor.couldBeThrough = false;
+		}
 		
 		return brickActor;
 	}

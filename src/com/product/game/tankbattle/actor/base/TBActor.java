@@ -8,9 +8,6 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.util.modifier.IModifier;
 
-import android.content.Entity;
-
-import com.product.game.tankbattle.actor.TBActorHelper;
 import com.product.game.tankbattle.actor.map.BattleMap;
 import com.product.game.tankbattle.resource.sprite.BaseSpriteManager;
 public abstract class TBActor {
@@ -110,6 +107,11 @@ public abstract class TBActor {
 	 * Rotations, Movements, Attack
 	 **********************************************************************************************************
 	 */
+	
+	private float getDurationSecond(float pFrom, float pTo, float speed) {
+		return Math.abs(pFrom - pTo) / speed;
+	}
+	
 	public void rotate(Float angle) {
 		actorEntity.setRotation(angle);
 	}
@@ -127,7 +129,7 @@ public abstract class TBActor {
 			return;
 		}
 		
-		float duration = TBActorHelper.getDurationSecond(fromX, toX, speed);
+		float duration = getDurationSecond(fromX, toX, speed);
 		actorEntity.registerEntityModifier(new MoveXModifier(duration, fromX, toX, new IEntityModifierListener() {
 			
 			@Override
@@ -161,7 +163,7 @@ public abstract class TBActor {
 			return;
 		}
 		
-		float duration = TBActorHelper.getDurationSecond(fromY, toY, speed);
+		float duration = getDurationSecond(fromY, toY, speed);
 		actorEntity.registerEntityModifier(new MoveYModifier(duration, fromY, toY, new IEntityModifierListener() {
 			
 			@Override
@@ -193,7 +195,7 @@ public abstract class TBActor {
 		}
 		
 		rotateUp();
-		float newY = Math.max(getY() - stepDistance, battleMap.rectMap.top);
+		float newY = Math.max(getY() - stepDistance, battleMap.getCollisonUpSide(this));
 		isMoving = true;
 		moveByY(getY(), newY, new IActorMovingEvent() {
 			
@@ -217,7 +219,7 @@ public abstract class TBActor {
 		}
 		
 		rotateDown();
-		float newY = Math.min(getY() + stepDistance, battleMap.rectMap.bottom - getHeight());
+		float newY = Math.min(getY() + stepDistance, battleMap.getCollisonDownSide(this) - getHeight());
 		isMoving = true;
 		moveByY(getY(), newY, new IActorMovingEvent() {
 			
@@ -242,7 +244,7 @@ public abstract class TBActor {
 		}
 		
 		rotateLeft();
-		float newX = Math.max(getX() - stepDistance, battleMap.rectMap.left);
+		float newX = Math.max(getX() - stepDistance, battleMap.getCollisonLeftSide(this));
 		isMoving = true;
 		moveByX(getX(), newX, new IActorMovingEvent() {
 			
@@ -267,7 +269,7 @@ public abstract class TBActor {
 		}
 		
 		rotateRight();
-		float newX = Math.min(getX() + stepDistance, battleMap.rectMap.right - getWidth());
+		float newX = Math.min(getX() + stepDistance, battleMap.getCollisonRightSide(this) - getWidth());
 		isMoving = true;
 
 		moveByX(getX(), newX, new IActorMovingEvent() {

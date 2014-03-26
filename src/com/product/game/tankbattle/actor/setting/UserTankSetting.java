@@ -14,7 +14,7 @@ public class UserTankSetting implements BaseTBSetting {
 	}
 	@Override
 	public float getDefaultSpeed() {
-		return 500;
+		return 100;
 	}
 	@Override
 	public int getDefaultLevel() {

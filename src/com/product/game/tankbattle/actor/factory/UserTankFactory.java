@@ -2,6 +2,7 @@ package com.product.game.tankbattle.actor.factory;
 
 import com.product.game.tankbattle.actor.base.BaseTBFactory;
 import com.product.game.tankbattle.actor.entity.tank.UserTank;
+import com.product.game.tankbattle.actor.setting.EnemyTankSetting;
 import com.product.game.tankbattle.actor.setting.UserTankSetting;
 
 public class UserTankFactory extends BaseTBFactory<UserTank, UserTankSetting> {
