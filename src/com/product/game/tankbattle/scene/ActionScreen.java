@@ -1,6 +1,7 @@
 package com.product.game.tankbattle.scene;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.primitive.Rectangle;
@@ -34,6 +35,13 @@ public class ActionScreen extends TBBaseScreen{
 		this.addGameUpdateListener();
 	}
 	
+	
+	/**
+	 **********************************************************************************************************
+	 * Game update loop
+	 **********************************************************************************************************
+	 */
+	
 	private void addGameUpdateListener() {
 		this.setTouchAreaBindingOnActionDownEnabled(true);
 		this.registerUpdateHandler(new IUpdateHandler() {
@@ -44,31 +52,77 @@ public class ActionScreen extends TBBaseScreen{
 			
 			@Override
 			public void onUpdate(float pSecondsElapsed) {
-				
-				if (mGameController.currentFireCommand == FireCommand.fire) {
-					userTank.fireBullet();
-				}
-				switch (mGameController.currentMoveCommand) {
-				case down:
-					userTank.stepDown();
-					break;
-				case up:
-					userTank.stepUp();
-					break;
-				case left:
-					userTank.stepLeft();
-					break;
-				case right:
-					userTank.stepRight();
-					break;
-				default:
-					break;
-				}
-
+				handleUpdateController();
+				handleUpdateEnermy();
 			}
 		});
 	}
 	
+	/**
+	 **********************************************************************************************************
+	 * Enemy Update
+	 **********************************************************************************************************
+	 */
+	private void handleUpdateEnermy() {
+		Random random = new Random();
+		
+		for (EnermyTank tank : arrEnermyTanks) {
+			if (random.nextInt(10) == 1) {
+				switch (random.nextInt(4)) {
+				case 0:
+					tank.stepUp();
+					break;
+				case 1:
+					tank.stepDown();
+					break;
+				case 2:
+					tank.stepLeft();
+					break;
+				case 3:
+					tank.stepRight();
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
+
+	}
+	
+	/**
+	 **********************************************************************************************************
+	 * Controller update
+	 **********************************************************************************************************
+	 */
+	
+	private void handleUpdateController() {
+		if (mGameController.currentFireCommand == FireCommand.fire) {
+			userTank.fireBullet();
+		}
+		switch (mGameController.currentMoveCommand) {
+		case down:
+			userTank.stepDown();
+			break;
+		case up:
+			userTank.stepUp();
+			break;
+		case left:
+			userTank.stepLeft();
+			break;
+		case right:
+			userTank.stepRight();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	/**
+	 **********************************************************************************************************
+	 * Initial objects
+	 **********************************************************************************************************
+	 */
 	
 	private void initBattleMap() {
 		mBattleMap = new BattleMap(this);		
@@ -76,8 +130,7 @@ public class ActionScreen extends TBBaseScreen{
 	
 	private void initUserTanks() {
 		userTank = UserTankFactory.getInstance().makeCompleteActor();
-		userTank.addToBattleMap(mBattleMap);
-		userTank.setPosition(100, 100);
+		mBattleMap.addActor(userTank, mBattleMap.numTileX - 1, mBattleMap.numTileY -1);
 	}
 	
 	
@@ -85,10 +138,8 @@ public class ActionScreen extends TBBaseScreen{
 		arrEnermyTanks = new ArrayList<EnermyTank>();
 		for (int i = 0; i < 10; i++) {
 			EnermyTank tank = EnermyTankFactory.getInstance().makeCompleteActor();
-			tank.addToBattleMap(mBattleMap);
 			arrEnermyTanks.add(tank);
-			
-			tank.setPosition(i* tank.getWidth() + 2, 0);
+			mBattleMap.addActor(tank, i, 0);
 		}
 	}
 	

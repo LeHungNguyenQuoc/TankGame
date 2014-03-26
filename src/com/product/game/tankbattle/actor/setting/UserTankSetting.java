@@ -22,7 +22,7 @@ public class UserTankSetting implements BaseTBSetting {
 	}
 	@Override
 	public int getStepDistance() {
-		return Resolution.TANK_STEP_DISTANCE;
+		return Resolution.TANK_USER_STEP_DISTANCE;
 	}
 	@Override
 	public ACTOR_TYPE getActorType() {

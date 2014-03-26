@@ -48,7 +48,7 @@ public class TankActor extends TBActor{
 	
 	private BulletActor makeTankBullet() {
 		BulletActor bullet = BulletFactory.getInstances().makeCompleteActor();
-		bullet.addToBattleMap(mBattleMap);
+		battleMap.addActor(bullet);
 		bullet.setPosition(getX() + getWidth() / 2  - bullet.getWidth()/2 , 
 				getY() + getHeight()/2 - bullet.getHeight()/2);
 		return bullet;

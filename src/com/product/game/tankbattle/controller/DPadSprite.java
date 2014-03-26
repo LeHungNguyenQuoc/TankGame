@@ -64,7 +64,9 @@ public class DPadSprite extends AnimatedSprite{
 				_touchListener.touchUp();
 			} else if (onDownPart(pointX, pointY)) {
 				_touchListener.touchDown();
-			} 
+			}  else {
+				_touchListener.noTouch();
+			}
 		}
 	}
 	

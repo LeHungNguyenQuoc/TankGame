@@ -3,9 +3,10 @@ package com.product.game.tankbattle.actor.factory;
 import com.product.game.tankbattle.actor.base.BaseTBFactory;
 import com.product.game.tankbattle.actor.entity.tank.EnermyTank;
 import com.product.game.tankbattle.actor.entity.tank.TankActor;
+import com.product.game.tankbattle.actor.setting.EnemyTankSetting;
 import com.product.game.tankbattle.actor.setting.UserTankSetting;
 
-public class EnermyTankFactory extends BaseTBFactory<EnermyTank, UserTankSetting>{
+public class EnermyTankFactory extends BaseTBFactory<EnermyTank, EnemyTankSetting>{
 
 	private static EnermyTankFactory instance;
 	public static EnermyTankFactory getInstance() {
@@ -21,8 +22,8 @@ public class EnermyTankFactory extends BaseTBFactory<EnermyTank, UserTankSetting
 	}
 
 	@Override
-	protected UserTankSetting orderSetting() {
-		return new UserTankSetting();
+	protected EnemyTankSetting orderSetting() {
+		return new EnemyTankSetting();
 	}
 
 	

@@ -51,7 +51,7 @@ public abstract class TBActor {
 	private long mLastAttackTimeMS;
 	
 	protected Scene mScene;
-	protected BattleMap mBattleMap;
+	public BattleMap battleMap;
 	
 	public TBActor() {
 		isMoving = false;
@@ -59,6 +59,12 @@ public abstract class TBActor {
 		actorID = actorIdValue;
 		actorIdValue ++;
 	}
+	
+	/**
+	 **********************************************************************************************************
+	 * Basic attributes
+	 **********************************************************************************************************
+	 */
 		
 	public float getX() {
 		return actorEntity.getX();
@@ -93,12 +99,17 @@ public abstract class TBActor {
 		return actorEntity;
 	}
 	
-	public void addToBattleMap(BattleMap map) {
-		mScene = map.mScene;
+	public void addToScene(Scene scene) {
+		mScene = scene;
 		mScene.attachChild(actorEntity);
-		mBattleMap = map;
 	}
+
 	
+	/**
+	 **********************************************************************************************************
+	 * Rotations, Movements, Attack
+	 **********************************************************************************************************
+	 */
 	public void rotate(Float angle) {
 		actorEntity.setRotation(angle);
 	}
@@ -182,10 +193,7 @@ public abstract class TBActor {
 		}
 		
 		rotateUp();
-		float newY = Math.max(getY() - stepDistance, mBattleMap.rectMap.top);
-//		if (newY >= getY()) {
-//			return;
-//		}
+		float newY = Math.max(getY() - stepDistance, battleMap.rectMap.top);
 		isMoving = true;
 		moveByY(getY(), newY, new IActorMovingEvent() {
 			
@@ -209,10 +217,7 @@ public abstract class TBActor {
 		}
 		
 		rotateDown();
-		float newY = Math.min(getY() + stepDistance, mBattleMap.rectMap.bottom - getHeight());
-//		if (newY <= getY()) {
-//			return;
-//		}
+		float newY = Math.min(getY() + stepDistance, battleMap.rectMap.bottom - getHeight());
 		isMoving = true;
 		moveByY(getY(), newY, new IActorMovingEvent() {
 			
@@ -237,10 +242,7 @@ public abstract class TBActor {
 		}
 		
 		rotateLeft();
-		float newX = Math.max(getX() - stepDistance, mBattleMap.rectMap.left);
-//		if (newX >= getX()) {
-//			return;
-//		}
+		float newX = Math.max(getX() - stepDistance, battleMap.rectMap.left);
 		isMoving = true;
 		moveByX(getX(), newX, new IActorMovingEvent() {
 			
@@ -265,10 +267,7 @@ public abstract class TBActor {
 		}
 		
 		rotateRight();
-		float newX = Math.min(getX() + stepDistance, mBattleMap.rectMap.right - getWidth());
-//		if (newX <= getX()) {
-//			return;
-//		}
+		float newX = Math.min(getX() + stepDistance, battleMap.rectMap.right - getWidth());
 		isMoving = true;
 
 		moveByX(getX(), newX, new IActorMovingEvent() {
@@ -323,7 +322,6 @@ public abstract class TBActor {
 			mLastAttackTimeMS = curMS;
 			return true;
 		}
-		
 		return false;
 	}
 }
