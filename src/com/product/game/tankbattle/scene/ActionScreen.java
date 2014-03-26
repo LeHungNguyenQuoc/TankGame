@@ -70,16 +70,16 @@ public class ActionScreen extends TBBaseScreen{
 			if (random.nextInt(10) == 1) {
 				switch (random.nextInt(4)) {
 				case 0:
-					tank.stepUp();
+					tank.stepUp(null);
 					break;
 				case 1:
-					tank.stepDown();
+					tank.stepDown(null);
 					break;
 				case 2:
-					tank.stepLeft();
+					tank.stepLeft(null);
 					break;
 				case 3:
-					tank.stepRight();
+					tank.stepRight(null);
 					break;
 
 				default:
@@ -102,16 +102,16 @@ public class ActionScreen extends TBBaseScreen{
 		}
 		switch (mGameController.currentMoveCommand) {
 		case down:
-			userTank.stepDown();
+			userTank.stepDown(null);
 			break;
 		case up:
-			userTank.stepUp();
+			userTank.stepUp(null);
 			break;
 		case left:
-			userTank.stepLeft();
+			userTank.stepLeft(null);
 			break;
 		case right:
-			userTank.stepRight();
+			userTank.stepRight(null);
 			break;
 		default:
 			break;

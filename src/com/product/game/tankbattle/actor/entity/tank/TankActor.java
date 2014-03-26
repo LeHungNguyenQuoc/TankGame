@@ -29,16 +29,16 @@ public class TankActor extends TBActor{
 				
 		switch (direction) {
 		case Down:
-			bullet.stepDown();
+			bullet.flyDown();
 			break;
 		case Left:
-			bullet.stepLeft();
+			bullet.flyLeft();
 			break;
 		case Up:
-			bullet.stepUp();
+			bullet.flyUp();
 			break;
 		case Right:
-			bullet.stepRight();
+			bullet.flyRight();
 			break;
 
 		default:

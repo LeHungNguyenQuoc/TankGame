@@ -144,7 +144,7 @@ public abstract class TBActor {
 			public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
 				isMoving = false;
 				if (eventListener != null) {
-					eventListener.onStartMoving();
+					eventListener.onEndMoving();
 				}
 			}
 		}));
@@ -178,7 +178,7 @@ public abstract class TBActor {
 			public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
 				isMoving = false;
 				if (eventListener != null) {
-					eventListener.onStartMoving();
+					eventListener.onEndMoving();
 				}
 			}
 		}));
@@ -189,101 +189,55 @@ public abstract class TBActor {
 	/**
 	 * actor steps up
 	 */
-	public void stepUp() {
+	public void stepUp(final IActorMovingEvent event) {
 		if (isMoving) {
 			return;
 		}
 		
 		rotateUp();
 		float newY = Math.max(getY() - stepDistance, battleMap.getCollisonUpSide(this));
-		isMoving = true;
-		moveByY(getY(), newY, new IActorMovingEvent() {
-			
-			@Override
-			public void onStartMoving() {
-			}
-			
-			@Override
-			public void onEndMoving() {
-				isMoving = false;
-			}
-		});
+		moveByY(getY(), newY,event);
 	}
 	
 	/**
 	 * actor steps down
 	 */
-	public void stepDown() {
+	public void stepDown(final IActorMovingEvent event) {
 		if (isMoving) {
 			return;
 		}
 		
 		rotateDown();
 		float newY = Math.min(getY() + stepDistance, battleMap.getCollisonDownSide(this) - getHeight());
-		isMoving = true;
-		moveByY(getY(), newY, new IActorMovingEvent() {
-			
-			@Override
-			public void onStartMoving() {
-			}
-			
-			@Override
-			public void onEndMoving() {
-				isMoving = false;
-			}
-		});
-		
+		moveByY(getY(), newY, event); 
 	}
 	
 	/**
 	 * actor steps left
 	 */
-	public void stepLeft() {
+	public void stepLeft(final IActorMovingEvent event) {
 		if (isMoving) {
 			return;
 		}
 		
 		rotateLeft();
 		float newX = Math.max(getX() - stepDistance, battleMap.getCollisonLeftSide(this));
-		isMoving = true;
-		moveByX(getX(), newX, new IActorMovingEvent() {
-			
-			@Override
-			public void onStartMoving() {
-			}
-			
-			@Override
-			public void onEndMoving() {
-				isMoving = false;
-			}
-		});
+		moveByX(getX(), newX, event);
 		
 	}
 	
 	/**
 	 * actor steps right
 	 */
-	public void stepRight() {
+	public void stepRight(final IActorMovingEvent event) {
 		if (isMoving) {
 			return;
 		}
 		
 		rotateRight();
 		float newX = Math.min(getX() + stepDistance, battleMap.getCollisonRightSide(this) - getWidth());
-		isMoving = true;
 
-		moveByX(getX(), newX, new IActorMovingEvent() {
-			
-			@Override
-			public void onStartMoving() {
-			}
-			
-			@Override
-			public void onEndMoving() {
-				isMoving = false;
-			}
-		});
-		
+		moveByX(getX(), newX, event);
 	}
 	
 	/**

@@ -24,6 +24,7 @@ public interface Resolution {
 	public final static int BULLET_W = TILESET_SIZE/3;
 	public final static int BULLET_H = TILESET_SIZE/3;
 	public final static int BULLET_STEP = TILESET_SIZE;
+	public final static int BULLET_MAX_WAY = SCREEN_WIDTH;
 	
 	
 	//MAP
