@@ -7,7 +7,7 @@ public interface Resolution {
 	
 	
 	//GAME TILESET
-	public static final int TILESET_SIZE = SCREEN_HEIGHT / 20;
+	public static final int TILESET_SIZE = SCREEN_HEIGHT / 15;
 	
 	//TANK
 	public final static int TANK_W = TILESET_SIZE;

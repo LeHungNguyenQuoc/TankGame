@@ -5,9 +5,9 @@ import org.andengine.opengl.font.FontFactory;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.activity.BaseGameActivity;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 
+import com.product.game.tankbattle.resource.sprite.BrickSpriteManager;
 import com.product.game.tankbattle.resource.sprite.BulletSpriteManager;
 import com.product.game.tankbattle.resource.sprite.ControllerSpriteManager;
 import com.product.game.tankbattle.resource.sprite.TankSpriteManager;
@@ -17,13 +17,13 @@ public class GameResource {
 	private static GameResource instance;
 	public Font fontBig;
 	public Font fontSmall;
-	public ControllerSpriteManager controller;
 	public BaseGameActivity activity;
 	public VertexBufferObjectManager vertexBufferObjectManager;
 	
-	public TankSpriteManager tankResources;
-	public BulletSpriteManager bulletResources;
-	
+	public ControllerSpriteManager controller;
+	public TankSpriteManager tank;
+	public BulletSpriteManager bullet;
+	public BrickSpriteManager brick;
 	
 	public static GameResource getInstance() {
 		if (instance == null) {
@@ -47,14 +47,17 @@ public class GameResource {
 	
 	
 	private void configBitmapAlias(BaseGameActivity activity) {
-		tankResources = new TankSpriteManager();
-		tankResources.loadBitmapTextureAtlas(activity);
+		tank = new TankSpriteManager();
+		tank.loadBitmapTextureAtlas(activity);
 		
 		controller = new ControllerSpriteManager();
 		controller.dPad.loadBitmapTextureAtlas(activity);
 		
-		bulletResources = new BulletSpriteManager();
-		bulletResources.loadBitmapTextureAtlas(activity);
+		bullet = new BulletSpriteManager();
+		bullet.loadBitmapTextureAtlas(activity);
+		
+		brick = new BrickSpriteManager();
+		brick.loadBitmapTextureAtlas(activity);
 	}
 	
 	

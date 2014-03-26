@@ -3,6 +3,7 @@ package com.product.game.tankbattle.scene;
 import java.util.ArrayList;
 
 import org.andengine.engine.handler.IUpdateHandler;
+import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.util.color.Color;
 
@@ -25,7 +26,7 @@ public class ActionScreen extends TBBaseScreen{
 	BattleMap mBattleMap;
 	
 	public ActionScreen() {
-		this.setBackground(new Background(Color.BLACK));
+		this.setBackground(new Background(Color.PINK));
 		this.initBattleMap();
 		this.initUserTanks();
 		this.initEnermyTanks();
@@ -70,7 +71,7 @@ public class ActionScreen extends TBBaseScreen{
 	
 	
 	private void initBattleMap() {
-		mBattleMap = new BattleMap(this);
+		mBattleMap = new BattleMap(this);		
 	}
 	
 	private void initUserTanks() {

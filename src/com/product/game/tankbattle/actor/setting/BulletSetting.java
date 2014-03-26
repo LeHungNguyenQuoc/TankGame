@@ -36,7 +36,7 @@ public class BulletSetting implements BaseTBSetting{
 
 	@Override
 	public BaseSpriteManager getSpriteManager() {
-		return GameResource.getInstance().bulletResources;
+		return GameResource.getInstance().bullet;
 	}
 
 	@Override
