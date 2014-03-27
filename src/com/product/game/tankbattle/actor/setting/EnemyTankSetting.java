@@ -11,6 +11,6 @@ public class EnemyTankSetting extends UserTankSetting{
 	
 	@Override
 	public float getDefaultSpeed() {
-		return 100;
+		return Resolution.TANK_ENEMY_SPEED;
 	}
 }

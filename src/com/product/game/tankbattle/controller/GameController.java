@@ -53,8 +53,8 @@ public class GameController implements IDPadSpriteListener{
 				return true;
 			}
 		});
-		fireSprite.setPosition(Resolution.SCREEN_WIDTH - fireSprite.getWidth() - Resolution.DPAD_OFF,
-				(Resolution.SCREEN_HEIGHT - fireSprite.getHeight()) - Resolution.DPAD_OFF);
+		fireSprite.setPosition(Resolution.SCREEN_WIDTH - fireSprite.getWidth() - Resolution.FIRE_BUTTON_OFF,
+				(Resolution.SCREEN_HEIGHT - fireSprite.getHeight()) - Resolution.FIRE_BUTTON_OFF);
 	}
 	
 

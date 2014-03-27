@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import com.product.game.tankbattle.resource.sprite.BrickSpriteManager;
 import com.product.game.tankbattle.resource.sprite.BulletSpriteManager;
 import com.product.game.tankbattle.resource.sprite.ControllerSpriteManager;
+import com.product.game.tankbattle.resource.sprite.ExplosionSpriteManager;
 import com.product.game.tankbattle.resource.sprite.TankSpriteManager;
 
 public class GameResource {
@@ -24,6 +25,7 @@ public class GameResource {
 	public TankSpriteManager tank;
 	public BulletSpriteManager bullet;
 	public BrickSpriteManager brick;
+	public ExplosionSpriteManager explosion;
 	
 	public static GameResource getInstance() {
 		if (instance == null) {
@@ -58,6 +60,9 @@ public class GameResource {
 		
 		brick = new BrickSpriteManager();
 		brick.loadBitmapTextureAtlas(activity);
+		
+		explosion = new ExplosionSpriteManager();
+		explosion.loadBitmapTextureAtlas(activity);
 	}
 	
 	

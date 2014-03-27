@@ -16,10 +16,13 @@ public class BaseActivity  extends SimpleBaseGameActivity{
 	public EngineOptions onCreateEngineOptions() {
 		instance = this;
 		
-		return new EngineOptions(true, 
+		EngineOptions options =  new EngineOptions(true, 
 				GameConfiguration.getInstance().screenOrientation, 
 				GameConfiguration.getInstance().screenRatio, 
 				GameConfiguration.getInstance().camera);
+		options.getTouchOptions().setNeedsMultiTouch(true);
+		
+		return options;
 	}
 
 	@Override

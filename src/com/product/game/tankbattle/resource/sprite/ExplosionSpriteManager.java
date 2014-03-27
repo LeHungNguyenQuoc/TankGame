@@ -1,35 +1,27 @@
 package com.product.game.tankbattle.resource.sprite;
 
 import com.product.game.tankbattle.actor.base.TBActor.ACTOR_DIRECTION;
-import com.product.game.tankbattle.controller.DPadSprite;
-import com.product.game.tankbattle.resource.GameResource;
 
-public class DpadSpriteManager extends BaseSpriteManager{
+public class ExplosionSpriteManager extends BaseSpriteManager{
 
 	@Override
 	public int getFrameNumbers() {
-		return 1;
+		return 8;
 	}
 
 	@Override
 	public String getGFXResourcePath() {
-		return "dpad_test.png";
+		return "explosion_sprite.png";
 	}
 
 	@Override
 	public int getFrameWidth() {
-		return 250;
+		return 100;
 	}
 
 	@Override
 	public int getFrameHeight() {
-		return 250;
-	}
-
-	
-	@Override
-	public DPadSprite makeAnimateSprite(int width, int height) {
-		return new DPadSprite(0, 0, width, height, mTiledTextureRegion, GameResource.getInstance().vertexBufferObjectManager);
+		return 100;
 	}
 
 	@Override
@@ -54,6 +46,7 @@ public class DpadSpriteManager extends BaseSpriteManager{
 
 	@Override
 	public ACTOR_DIRECTION getDefaultDirection() {
-		return ACTOR_DIRECTION.Unknow;
+		return ACTOR_DIRECTION.Up;
 	}
+
 }

@@ -12,8 +12,12 @@ public interface Resolution {
 	//TANK
 	public final static int TANK_W = TILESET_SIZE;
 	public final static int TANK_H = TILESET_SIZE;
-	public final static int TANK_USER_STEP_DISTANCE = TILESET_SIZE/2;
+	public final static int TANK_USER_STEP_DISTANCE = TILESET_SIZE/4;
+	public final static int TANK_USER_SPEED = TILESET_SIZE*6;
+	
 	public final static int TANK_ENEMY_STEP_DISTANCE = TILESET_SIZE/2;
+	public final static int TANK_ENEMY_SPEED = TILESET_SIZE*5;
+	
 	
 	//BRICK 
 	public final static int BRICK_W = TILESET_SIZE;
@@ -21,10 +25,15 @@ public interface Resolution {
 	
 	
 	//BULLET
-	public final static int BULLET_W = TILESET_SIZE/3;
-	public final static int BULLET_H = TILESET_SIZE/3;
+	public final static int BULLET_W = TILESET_SIZE/2;
+	public final static int BULLET_H = TILESET_SIZE/2;
 	public final static int BULLET_STEP = TILESET_SIZE;
 	public final static int BULLET_MAX_WAY = SCREEN_WIDTH;
+	
+	
+	//Explosion
+	public final static int EXPLOSION_W = TILESET_SIZE* 2;
+	public final static int EXPLOSION_H = TILESET_SIZE * 2;
 	
 	
 	//MAP
@@ -33,11 +42,12 @@ public interface Resolution {
 	
 	
 	//DPAD
-	public final static int DPAD_W = SCREEN_HEIGHT/4;
-	public final static int DPAD_H = SCREEN_HEIGHT/4;
-	public final static int DPAD_OFF = DPAD_W/10;
+	public final static int DPAD_W = SCREEN_HEIGHT* 7/10;
+	public final static int DPAD_H = SCREEN_HEIGHT* 7/10;
+	public final static int DPAD_OFF = - DPAD_W/7;
 	
 	public final static int FIRE_BUTTON_W = SCREEN_HEIGHT/5;
 	public final static int FIRE_BUTTON_H = SCREEN_HEIGHT/5;
+	public final static int FIRE_BUTTON_OFF = FIRE_BUTTON_H/3;
 
 }

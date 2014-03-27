@@ -15,12 +15,13 @@ public abstract class TBActor {
 	public interface IActorMovingEvent {
 		public void onStartMoving();
 		public void onEndMoving();
+		public void onForceStopMoving();
 	}
 	
 	public static int actorIdValue = 0;
 	
 	public enum ACTOR_TYPE {
-		Tank, Brick, Item, Bullet,
+		Tank, Brick, Item, Bullet, Explosion,
 	}
 	
 	public enum ACTOR_TEAM {
@@ -100,6 +101,11 @@ public abstract class TBActor {
 		mScene = scene;
 		mScene.attachChild(actorEntity);
 	}
+	
+	public void performHidden() {
+		actorEntity.setPosition(-getWidth(), -getHeight());
+//		mScene.detachChild(actorEntity);
+	}
 
 	
 	/**
@@ -126,6 +132,9 @@ public abstract class TBActor {
 		
 		if (fromX == toX) {
 			isMoving = false;
+			if (eventListener != null) {
+				eventListener.onForceStopMoving();
+			}
 			return;
 		}
 		
@@ -160,6 +169,9 @@ public abstract class TBActor {
 		
 		if (fromY == toY) {
 			isMoving = false;
+			if (eventListener != null) {
+				eventListener.onForceStopMoving();
+			}
 			return;
 		}
 		
@@ -189,7 +201,7 @@ public abstract class TBActor {
 	/**
 	 * actor steps up
 	 */
-	public void stepUp(final IActorMovingEvent event) {
+	public void stepUp(final IActorMovingEvent 	event) {
 		if (isMoving) {
 			return;
 		}

@@ -6,44 +6,51 @@ import com.product.game.tankbattle.resolution.Resolution;
 import com.product.game.tankbattle.resource.GameResource;
 import com.product.game.tankbattle.resource.sprite.BaseSpriteManager;
 
-public class UserTankSetting implements BaseTBSetting {
-	
+public class ExplosionSetting implements BaseTBSetting{
+
 	@Override
 	public int getDefaultHitPoint() {
 		return 1;
 	}
+
 	@Override
 	public float getDefaultSpeed() {
-		return Resolution.TANK_USER_SPEED;
+		return 0;
 	}
+
 	@Override
 	public int getDefaultLevel() {
 		return 1;
 	}
+
 	@Override
 	public int getStepDistance() {
-		return Resolution.TANK_USER_STEP_DISTANCE;
+		return 0;
 	}
+
 	@Override
 	public ACTOR_TYPE getActorType() {
-		return ACTOR_TYPE.Tank;
+		return ACTOR_TYPE.Explosion;
 	}
-	@Override
-	public BaseSpriteManager getSpriteManager() {
-		return GameResource.getInstance().tank;
-	}
+
 	@Override
 	public float getDefaultAttackFPS() {
-		return 5;
+		return 0;
 	}
+
+	@Override
+	public BaseSpriteManager getSpriteManager() {
+		return GameResource.getInstance().explosion;
+	}
+
 	@Override
 	public int getActorWidth() {
-		return Resolution.TANK_W;
+		return Resolution.EXPLOSION_W;
 	}
 
 	@Override
 	public int getActorHeight() {
-		return Resolution.TANK_H;
+		return Resolution.EXPLOSION_H;
 	}
 
 }

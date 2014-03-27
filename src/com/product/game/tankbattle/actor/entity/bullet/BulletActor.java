@@ -1,6 +1,8 @@
 package com.product.game.tankbattle.actor.entity.bullet;
 
 import com.product.game.tankbattle.actor.base.TBActor;
+import com.product.game.tankbattle.actor.entity.explosion.ExplosionActor;
+import com.product.game.tankbattle.actor.factory.ExplosionFactory;
 import com.product.game.tankbattle.resolution.Resolution;
 
 public class BulletActor extends TBActor {
@@ -9,11 +11,21 @@ public class BulletActor extends TBActor {
 	public BulletActor() {
 		mDistance = 0;
 	}
+	
+	
+	public void causeExplosion() {
+		ExplosionActor explosionActor =  ExplosionFactory.getInstances().makeCompleteActor();
+		explosionActor.addToScene(mScene);
+		explosionActor.performExplosionOn(this, null);
+		performHidden();
+	}
 	public void flyUp() {
 		if (mDistance > Resolution.BULLET_MAX_WAY) {
 			mDistance = 0;
+			causeExplosion();
 			return;
 		}
+
 		mDistance+= Resolution.BULLET_STEP;
 		
 		stepUp(new IActorMovingEvent() {
@@ -26,11 +38,17 @@ public class BulletActor extends TBActor {
 			public void onEndMoving() {
 				flyUp();
 			}
+
+			@Override
+			public void onForceStopMoving() {
+				causeExplosion();
+			}
 		});
 	}
 	public void flyDown() {
 		if (mDistance > Resolution.BULLET_MAX_WAY) {
 			mDistance = 0;
+			causeExplosion();
 			return;
 		}
 		mDistance+= Resolution.BULLET_STEP;
@@ -45,11 +63,17 @@ public class BulletActor extends TBActor {
 			public void onEndMoving() {
 				flyDown();
 			}
+
+			@Override
+			public void onForceStopMoving() {
+				causeExplosion();
+			}
 		});
 	}
 	public void flyLeft() {
 		if (mDistance > Resolution.BULLET_MAX_WAY) {
 			mDistance = 0;
+			causeExplosion();
 			return;
 		}
 		mDistance+= Resolution.BULLET_STEP;
@@ -64,11 +88,17 @@ public class BulletActor extends TBActor {
 			public void onEndMoving() {
 				flyLeft();
 			}
+
+			@Override
+			public void onForceStopMoving() {
+				causeExplosion();
+			}
 		});
 	}
 	public void flyRight() {
 		if (mDistance > Resolution.BULLET_MAX_WAY) {
 			mDistance = 0;
+			causeExplosion();
 			return;
 		}
 		mDistance+= Resolution.BULLET_STEP;
@@ -82,6 +112,11 @@ public class BulletActor extends TBActor {
 			@Override
 			public void onEndMoving() {
 				flyRight();
+			}
+
+			@Override
+			public void onForceStopMoving() {
+				causeExplosion();
 			}
 		});
 	}

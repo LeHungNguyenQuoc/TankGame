@@ -14,7 +14,7 @@ public class DPadSprite extends AnimatedSprite{
 	public DPadSprite(float pX, float pY, int width, int height, 
 			ITiledTextureRegion pTiledTextureRegion,
 			VertexBufferObjectManager vertexBufferObjectManager) {
-		super(pX, pY, pTiledTextureRegion, vertexBufferObjectManager);
+		super(pX, pY, width, height, pTiledTextureRegion, vertexBufferObjectManager);
 		isHolding = false;
 	}
 
