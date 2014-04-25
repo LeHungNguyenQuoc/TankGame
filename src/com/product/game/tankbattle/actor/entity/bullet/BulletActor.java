@@ -3,6 +3,7 @@ package com.product.game.tankbattle.actor.entity.bullet;
 import com.product.game.tankbattle.actor.base.TBActor;
 import com.product.game.tankbattle.actor.entity.explosion.ExplosionActor;
 import com.product.game.tankbattle.actor.factory.ExplosionFactory;
+import com.product.game.tankbattle.pool.PoolManager;
 import com.product.game.tankbattle.resolution.Resolution;
 
 public class BulletActor extends TBActor {
@@ -14,8 +15,8 @@ public class BulletActor extends TBActor {
 	
 	
 	public void causeExplosion() {
-		ExplosionActor explosionActor =  ExplosionFactory.getInstances().makeCompleteActor();
-		explosionActor.addToScene(mScene);
+		ExplosionActor explosionActor = PoolManager.getInstance().getExplosion();
+//		explosionActor.addToScene(mScene);
 		explosionActor.performExplosionOn(this, null);
 		performHidden();
 	}

@@ -8,7 +8,10 @@ public abstract class BaseTBFactory<T extends TBActor, S extends BaseTBSetting>{
 	public T makeCompleteActor() {
 		T actor = makePlainActor();
 		actor.actorID = ++TBActor.actorIdValue;
-		
+		return makeActorDefaultSetting(actor);
+	}
+	
+	private T makeActorDefaultSetting(T actor) {
 		S setting = orderSetting();
 		actor.spriteInfo = setting.getSpriteManager();
 		actor.actorType = setting.getActorType();
@@ -22,5 +25,5 @@ public abstract class BaseTBFactory<T extends TBActor, S extends BaseTBSetting>{
 		actor.actorEntity = actor.spriteInfo.makeAnimateSprite(setting.getActorWidth(), setting.getActorHeight());
 		
 		return actor;
-	}	
+	}
 }

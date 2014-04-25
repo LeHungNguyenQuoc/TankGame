@@ -12,11 +12,11 @@ public interface Resolution {
 	//TANK
 	public final static int TANK_W = TILESET_SIZE;
 	public final static int TANK_H = TILESET_SIZE;
-	public final static int TANK_USER_STEP_DISTANCE = TILESET_SIZE/4;
+	public final static int TANK_USER_STEP_DISTANCE = TILESET_SIZE/2;
 	public final static int TANK_USER_SPEED = TILESET_SIZE*6;
 	
 	public final static int TANK_ENEMY_STEP_DISTANCE = TILESET_SIZE/2;
-	public final static int TANK_ENEMY_SPEED = TILESET_SIZE*5;
+	public final static int TANK_ENEMY_SPEED = TILESET_SIZE*4;
 	
 	
 	//BRICK 

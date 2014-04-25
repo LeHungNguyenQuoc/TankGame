@@ -18,6 +18,7 @@ import com.product.game.tankbattle.actor.map.BattleMap;
 import com.product.game.tankbattle.actor.setting.UserTankSetting;
 import com.product.game.tankbattle.controller.GameController;
 import com.product.game.tankbattle.controller.GameController.FireCommand;
+import com.product.game.tankbattle.pool.PoolManager;
 
 public class ActionScreen extends TBBaseScreen{
 
@@ -28,6 +29,7 @@ public class ActionScreen extends TBBaseScreen{
 	
 	public ActionScreen() {
 		this.setBackground(new Background(Color.PINK));
+		
 		this.initBattleMap();
 		this.initUserTanks();
 		this.initEnermyTanks();
@@ -68,7 +70,7 @@ public class ActionScreen extends TBBaseScreen{
 		
 		for (EnermyTank tank : arrEnermyTanks) {
 			if (random.nextInt(10) == 1) {
-				switch (random.nextInt(4)) {
+				switch (random.nextInt(5)) {
 				case 0:
 					tank.stepUp(null);
 					break;
@@ -80,6 +82,13 @@ public class ActionScreen extends TBBaseScreen{
 					break;
 				case 3:
 					tank.stepRight(null);
+					break;
+				case 4:
+					
+					if (random.nextInt(3) == 0) {
+						tank.fireBullet();
+					}
+					
 					break;
 
 				default:
@@ -125,7 +134,8 @@ public class ActionScreen extends TBBaseScreen{
 	 */
 	
 	private void initBattleMap() {
-		mBattleMap = new BattleMap(this);		
+		mBattleMap = new BattleMap(this);
+		PoolManager.init(mBattleMap);
 	}
 	
 	private void initUserTanks() {

@@ -5,6 +5,7 @@ import org.andengine.entity.sprite.AnimatedSprite;
 import com.product.game.tankbattle.actor.base.TBActor;
 import com.product.game.tankbattle.actor.entity.bullet.BulletActor;
 import com.product.game.tankbattle.actor.factory.BulletFactory;
+import com.product.game.tankbattle.pool.PoolManager;
 import com.product.game.tankbattle.resource.GameResource;
 
 public class TankActor extends TBActor{
@@ -47,8 +48,7 @@ public class TankActor extends TBActor{
 	}
 	
 	private BulletActor makeTankBullet() {
-		BulletActor bullet = BulletFactory.getInstances().makeCompleteActor();
-		battleMap.addActor(bullet);
+		BulletActor bullet = PoolManager.getInstance().getBullet();
 		bullet.setPosition(getX() + getWidth() / 2  - bullet.getWidth()/2 , 
 				getY() + getHeight()/2 - bullet.getHeight()/2);
 		return bullet;
